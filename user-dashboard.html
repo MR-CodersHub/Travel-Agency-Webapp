@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard | TerraQuest</title>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .sidebar-link.active {
+            background-color: #eff6ff;
+            color: #2563eb;
+            border-right: 3px solid #2563eb;
+        }
+
+        /* Hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900" x-data="{ currentTab: 'overview', sidebarOpen: false }">
+
+    <!-- Standard Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 bg-white shadow-sm text-slate-900">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <button @click="sidebarOpen = !sidebarOpen"
+                    class="lg:hidden text-slate-600 hover:text-blue-600 transition">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                    <i class="fas fa-compass"></i> TerraQuest
+                </div>
+            </div>
+
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="./index.html" class="hover:text-blue-600 transition">Home</a>
+                <a href="./about.html" class="hover:text-blue-600 transition">About</a>
+                <a href="./destinations.html" class="hover:text-blue-600 transition">Destinations</a>
+                <a href="./contact.html" class="hover:text-blue-600 transition">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-sm font-bold text-slate-900 user-name-display">Loading...</p>
+                        <p class="text-xs text-slate-500">Travel Enthusiast</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg font-bold border-2 border-white shadow-sm user-initial-display">
+                        -
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto pt-24 pb-12 px-6 min-h-screen flex gap-8">
+
+        <!-- Sidebar Navigation -->
+        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
+            class="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-slate-200 transition-transform duration-300 lg:static lg:block lg:bg-transparent lg:border-0 lg:w-64 pt-24 lg:pt-0">
+            <div class="px-6 lg:px-0 h-full overflow-y-auto">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                    <div class="p-6 border-b border-slate-100">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Main Menu</p>
+                        <nav class="space-y-1">
+                            <a href="#" @click.prevent="currentTab = 'overview'; sidebarOpen = false"
+                                :class="{ 'active': currentTab === 'overview' }"
+                                class="sidebar-link flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-r-lg transition">
+                                <i class="fas fa-th-large w-5"></i> Dashboard
+                            </a>
+                            <a href="#" @click.prevent="currentTab = 'bookings'; sidebarOpen = false"
+                                :class="{ 'active': currentTab === 'bookings' }"
+                                class="sidebar-link flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 hover:text-blue-600 rounded-r-lg transition">
+                                <i class="fas fa-suitcase w-5"></i> My Bookings
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="p-6">
+                        <nav class="space-y-1">
+                            <a href="#" onclick="Auth.logout()"
+                                class="flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50 rounded-r-lg transition mt-4">
+                                <i class="fas fa-sign-out-alt w-5"></i> Logout
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Overlay -->
+            <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black/20 z-30 lg:hidden">
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 min-w-0">
+
+            <!-- Welcome Header -->
+            <header class="mb-8">
+                <h1 class="text-3xl font-bold text-slate-900">Welcome back, <span class="user-first-name-display">Traveler</span>! 👋</h1>
+                <p class="text-slate-500">Here's what's happening with your travel plans.</p>
+            </header>
+
+            <!-- OVERVIEW TAB -->
+            <div x-show="currentTab === 'overview'" class="space-y-8" x-transition.opacity>
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg shadow-blue-200" id="upcoming-trip-container">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-3 bg-slate-50 text-slate-600 rounded-xl">
+                                <i class="fas fa-globe-americas text-xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-1" id="countries-count-display">0</h3>
+                        <p class="text-slate-500">Countries/Destinations</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-3 bg-green-50 text-green-600 rounded-xl">
+                                <i class="fas fa-wallet text-xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-1" id="total-spent-display">$0</h3>
+                        <p class="text-slate-500">Total Spent</p>
+                    </div>
+                </div>
+
+                <!-- Recent Activity / Next Trip Preview -->
+                <div id="next-adventure-section">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- BOOKINGS TAB -->
+            <div x-show="currentTab === 'bookings'" class="space-y-6" x-transition.opacity>
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-bold" id="bookings-header">My Bookings</h2>
+                </div>
+
+                <!-- Bookings Container -->
+                <div id="bookings-container" class="space-y-4">
+                   <!-- Populated by JS -->
+                </div>
+            </div>
+
+             <!-- PROFILE TAB (Placeholder for now, simplified) -->
+             <div x-show="currentTab === 'profile'" class="max-w-2xl" x-transition.opacity>
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-8">
+                     <h2 class="text-xl font-bold mb-6">Personal Information</h2>
+                     <p class="text-slate-500 mb-4">View your details below.</p>
+                     
+                     <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700">Full Name</label>
+                            <p class="text-lg user-name-display">Loading...</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700">Email Address</label>
+                            <p class="text-lg user-email-display">Loading...</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700">Member Since</label>
+                            <p class="text-lg member-since-display">-</p>
+                        </div>
+                     </div>
+                </div>
+             </div>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="fas fa-compass"></i> TerraQuest
+                </div>
+                <p class="text-gray-400 leading-relaxed">Making the world accessible to everyone through curated travel
+                    experiences and unparalleled support.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Destinations</a></li>
+                    <li><a href="#" class="hover:text-white transition">Special Offers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Travel Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Contact</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><i class="fas fa-phone mr-2"></i> +1 (555) 000-1234</li>
+                    <li><i class="fas fa-envelope mr-2"></i> hello@terraquest.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Adventure Way, NY</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Follow Us</h4>
+                <div class="flex gap-4 text-2xl">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            &copy; 2024 TerraQuest Travel Agency. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/user-dashboard.js"></script>
+</body>
+
+</html>

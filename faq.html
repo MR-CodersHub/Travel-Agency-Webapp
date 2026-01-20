@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | TerraQuest Travel Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fcfcfd;
+        }
+
+        .faq-acc::-webkit-details-marker {
+            display: none;
+        }
+
+        details[open] summary i {
+            transform: rotate(180deg);
+        }
+
+        .category-link.active {
+            background-color: #eff6ff;
+            color: #2563eb;
+            border-left: 4px solid #2563eb;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800">
+
+    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 text-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-compass"></i> TerraQuest
+            </div>
+
+            <div class="hidden md:flex space-x-8 font-medium text-gray-600">
+                <a href="./index.html" class="hover:text-blue-600 transition">Home</a>
+                <a href="./about.html" class="hover:text-blue-600 transition">About</a>
+                <a href="./destinations.html" class="hover:text-blue-600 transition">Destinations</a>
+                <a href="./contact.html" class="hover:text-blue-600 transition">Contact</a>
+
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="./booking.html"><button
+                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg">
+                        Book Now
+                    </button></a>
+            </div>
+        </div>
+    </nav>
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+
+    <header class="pt-32 pb-16 bg-white border-b border-gray-100 text-center px-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h1>
+        <p class="text-slate-500 max-w-2xl mx-auto text-lg">Everything you need to know before booking your journey.
+            Can't find what you're looking for? We're just a message away.</p>
+
+        <div class="mt-10 max-w-xl mx-auto relative">
+            <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <input type="text" placeholder="Search for questions (e.g. 'refund', 'passport')..."
+                class="w-full pl-14 pr-6 py-4 rounded-2xl border border-gray-200 shadow-sm focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none transition">
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto py-16 px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+
+            <div class="lg:col-span-3 space-y-12">
+
+                <div id="booking">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <span class="w-2 h-8 bg-blue-600 rounded-full"></span> Booking & Payments
+                    </h2>
+                    <div class="space-y-4">
+                        <details
+                            class="group bg-white border border-gray-200 rounded-2xl transition shadow-sm overflow-hidden"
+                            open>
+                            <summary
+                                class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg">
+                                How do I book a travel package?
+                                <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-600 leading-relaxed">
+                                Simply browse our Destinations or Packages page, select your preferred trip, and click
+                                "Book Now." Follow the step-by-step instructions in our secure checkout to enter
+                                traveler details and complete your reservation.
+                            </div>
+                        </details>
+
+                        <details
+                            class="group bg-white border border-gray-200 rounded-2xl transition shadow-sm overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg">
+                                What payment methods are accepted?
+                                <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-600 leading-relaxed">
+                                We accept all major Credit/Debit cards (Visa, Mastercard, American Express), UPI, and
+                                direct Net Banking. All transactions are encrypted and processed through secure payment
+                                gateways.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div id="refunds">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <span class="w-2 h-8 bg-blue-600 rounded-full"></span> Cancellations & Refunds
+                    </h2>
+                    <div class="space-y-4">
+                        <details
+                            class="group bg-white border border-gray-200 rounded-2xl transition shadow-sm overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg">
+                                Can I cancel or reschedule my booking?
+                                <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-600 leading-relaxed">
+                                Yes. Cancellations made 15 days prior to departure are eligible for a full refund (minus
+                                a small service fee). Rescheduling depends on hotel and flight availability; please
+                                contact our support team for specific requests.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div id="docs">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                        <span class="w-2 h-8 bg-blue-600 rounded-full"></span> Travel Documents
+                    </h2>
+                    <div class="space-y-4">
+                        <details
+                            class="group bg-white border border-gray-200 rounded-2xl transition shadow-sm overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg">
+                                What documents are required for international travel?
+                                <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-600 leading-relaxed">
+                                You will typically need a passport valid for at least 6 months, a valid visa for your
+                                destination, and travel insurance. We provide a detailed checklist of required documents
+                                for every international booking.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+        <div class="bg-blue-600 rounded-[2.5rem] p-10 md:p-16 text-center text-white">
+            <h2 class="text-3xl font-bold mb-4">Still have questions?</h2>
+            <p class="text-blue-100 mb-10 max-w-xl mx-auto text-lg">Our dedicated travel experts are available 24/7 to
+                assist you with any specific queries you may have.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="contact.html"
+                    class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition">Contact
+                    Support</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="fas fa-compass"></i> TerraQuest
+                </div>
+                <p class="text-gray-400 leading-relaxed">Making the world accessible to everyone through curated travel
+                    experiences and unparalleled support.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Destinations</a></li>
+                    <li><a href="#" class="hover:text-white transition">Special Offers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Travel Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Contact</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><i class="fas fa-phone mr-2"></i> +1 (555) 000-1234</li>
+                    <li><i class="fas fa-envelope mr-2"></i> hello@terraquest.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Adventure Way, NY</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Follow Us</h4>
+                <div class="flex gap-4 text-2xl">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            &copy; 2024 TerraQuest Travel Agency. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Navigation and Color Change on Scroll
+        window.onscroll = function () {
+            const nav = document.getElementById("navbar");
+            if (window.pageYOffset > 50) {
+                nav.classList.add("nav-glass", "shadow-md");
+                nav.classList.remove("text-white");
+                nav.classList.add("text-gray-900");
+            } else {
+                nav.classList.remove("nav-glass", "shadow-md");
+                nav.classList.remove("text-gray-900");
+                nav.classList.add("text-white");
+            }
+        };
+    </script>
+
+    <script>
+        // Simple Search Filter
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const questions = document.querySelectorAll('details');
+
+            questions.forEach(q => {
+                const text = q.innerText.toLowerCase();
+                q.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+
+        // Category Scroll Active Link
+        window.addEventListener('scroll', () => {
+            let current = "";
+            const sections = document.querySelectorAll('div[id]');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.category-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | TerraQuest Travel</title>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .auth-bg {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                url('https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body class="auth-bg min-h-screen flex items-center justify-center p-6">
+
+    <div class="max-w-md w-full">
+        <div class="text-center mb-8">
+            <div class="text-3xl font-bold text-blue-600 flex items-center justify-center gap-2 mb-4">
+                <i class="fas fa-compass"></i> TerraQuest
+            </div>
+            <h1 class="text-3xl font-bold text-slate-900">Welcome Back</h1>
+            <p class="text-slate-500 mt-2">Log in to manage your bookings and travel plans.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 p-8 md:p-10">
+
+            <div class="grid grid-cols-2 gap-4 mb-8">
+                <button
+                    class="flex items-center justify-center gap-2 py-3 px-4 border border-slate-200 rounded-xl hover:bg-slate-50 transition font-medium text-sm text-slate-600">
+                    <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-4 h-4" alt="Google"> Google
+                </button>
+                <button
+                    class="flex items-center justify-center gap-2 py-3 px-4 border border-slate-200 rounded-xl hover:bg-slate-50 transition font-medium text-sm text-slate-600">
+                    <i class="fab fa-facebook text-blue-600 text-lg"></i> Facebook
+                </button>
+            </div>
+
+            <div class="relative flex items-center justify-center mb-8">
+                <div class="border-t border-slate-100 w-full"></div>
+                <span class="bg-white px-4 text-xs text-slate-400 uppercase tracking-widest absolute">Or continue with
+                    email</span>
+            </div>
+
+            <form action="#" class="space-y-5" id="loginForm">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                    <div class="relative">
+                        <i class="far fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="email" placeholder="name@example.com" required
+                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 focus:bg-white transition bg-slate-50/50">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <label class="text-sm font-semibold text-slate-700">Password</label>
+                        <a href="#" class="text-xs font-bold text-blue-600 hover:underline">Forgot Password?</a>
+                    </div>
+                    <div class="relative">
+                        <i class="far fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="password" id="passwordField" placeholder="••••••••" required
+                            class="w-full pl-11 pr-12 py-3 rounded-xl border border-slate-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 focus:bg-white transition bg-slate-50/50">
+                        <button type="button" onclick="togglePassword()"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                            <i class="far fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember"
+                        class="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500 cursor-pointer">
+                    <label for="remember" class="ml-2 text-sm text-slate-600 cursor-pointer select-none">Remember me for
+                        30 days</label>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-200 flex items-center justify-center gap-2">
+                    <span>Log In</span>
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </button>
+            </form>
+        </div>
+
+        <div class="mt-8 text-center">
+            <p class="text-slate-600">
+                Don’t have an account?
+                <a href="./signup.html" class="text-blue-600 font-bold hover:underline">Create an Account</a>
+            </p>
+
+            <div class="mt-10 flex items-center justify-center gap-2 text-slate-400 text-xs">
+                <i class="fas fa-shield-alt text-green-500"></i>
+                <span>Your data is protected with AES-256 bit encryption</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function togglePassword() {
+            const field = document.getElementById('passwordField');
+            const icon = document.getElementById('toggleIcon');
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Authenticating...';
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+
+            const email = this.querySelector('input[type="email"]').value;
+            const password = document.getElementById('passwordField').value;
+
+            const result = await Auth.login(email, password);
+
+            if (!result.success) {
+                // Show error (can be improved with a toast or error div)
+                alert(result.message);
+                btn.innerHTML = originalText;
+                btn.classList.remove('opacity-80', 'cursor-not-allowed');
+            }
+        });
+
+        // check for registration success param
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('registered')) {
+            alert('Account created! Please log in.');
+        }
+    </script>
+</body>
+
+</html>

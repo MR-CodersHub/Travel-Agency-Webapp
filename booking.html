@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Trip | TerraQuest</title>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .booking-card {
+            background-color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Standard Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 bg-white shadow-sm text-slate-900">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-compass"></i> TerraQuest
+            </div>
+
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="./index.html" class="hover:text-blue-600 transition">Home</a>
+                <a href="./about.html" class="hover:text-blue-600 transition">About</a>
+                <a href="./destinations.html" class="hover:text-blue-600 transition">Destinations</a>
+                <a href="./contact.html" class="hover:text-blue-600 transition">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4 relative">
+                <!-- Auth Dropdown Trigger -->
+                <div id="auth-trigger" class="flex items-center gap-3 cursor-pointer" onclick="Auth.toggleDropdown()">
+                    <div
+                        class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-200 transition">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+
+                <!-- Dropdown Menu -->
+                <div id="auth-dropdown"
+                    class="absolute right-0 top-14 w-60 bg-white rounded-xl shadow-xl py-2 border border-gray-100 hidden transform origin-top-right transition-all z-50">
+                    <div id="dropdown-content">
+                        <!-- Content injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto pt-32 pb-20 px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+            <!-- Booking Form -->
+            <div class="lg:col-span-2">
+                <div class="mb-6">
+                    <a href="destinations.html"
+                        class="text-slate-500 hover:text-blue-600 transition text-sm font-semibold mb-4 inline-block"><i
+                            class="fas fa-arrow-left mr-2"></i> Back to Destinations</a>
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Confirm Your Booking</h1>
+                    <p class="text-slate-500 mt-2">Finish your booking in just a few steps.</p>
+                </div>
+
+                <div class="booking-card p-8">
+                    <!-- Success Message -->
+                    <div id="successMessage" class="hidden text-center py-10">
+                        <div
+                            class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-check text-3xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Booking Confirmed!</h2>
+                        <p class="text-slate-500 mb-8 text-lg">Thank you for booking with TerraQuest. A confirmation
+                            email has been sent
+                            to you.</p>
+                        <a href="user-dashboard.php?booking=success"
+                            class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition">
+                            Go to Dashboard
+                        </a>
+                    </div>
+
+                    <form id="bookingForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Destination -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Destination</label>
+                                <div class="relative">
+                                    <i
+                                        class="fas fa-map-marker-alt absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                    <input type="text" id="destination" list="destinationsList"
+                                        class="w-full pl-12 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none font-semibold text-slate-600">
+                                    <datalist id="destinationsList">
+                                        <option value="Bali, Indonesia">
+                                        <option value="Paris, France">
+                                        <option value="Swiss Alps, Switzerland">
+                                        <option value="Tokyo, Japan">
+                                        <option value="Santorini, Greece">
+                                        <option value="Patagonia, Argentina">
+                                    </datalist>
+                                </div>
+                            </div>
+
+                            <!-- Duration -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Duration</label>
+                                <div class="relative">
+                                    <i class="fas fa-clock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                    <input type="number" id="duration"
+                                        class="w-full pl-12 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none font-semibold text-slate-600">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Travel Date -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Travel Date</label>
+                                <div class="relative">
+                                    <input type="date" id="travelDate" required
+                                        class="w-full pl-4 pr-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-50 outline-none transition">
+                                </div>
+                            </div>
+
+                            <!-- Travelers -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Number of Travelers</label>
+                                <div class="relative">
+                                    <i
+                                        class="fas fa-user-friends absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                    <input type="number" id="travelers" min="1" max="10" value="1" required
+                                        class="w-full pl-12 pr-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-50 outline-none transition">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Special Requests -->
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Special Requests
+                                (Optional)</label>
+                            <textarea id="requests" rows="3"
+                                placeholder="Dietary restrictions, accessibility requirements, etc."
+                                class="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-50 outline-none transition"></textarea>
+                        </div>
+
+                        <!-- Terms -->
+                        <div class="flex items-start gap-3 pt-4">
+                            <input type="checkbox" id="terms" required
+                                class="mt-1 w-5 h-5 text-blue-600 rounded focus:ring-blue-500 border-gray-300">
+                            <label for="terms" class="text-sm text-slate-600 leading-relaxed">
+                                I agree to the <a href="#" class="text-blue-600 hover:underline">Terms & Conditions</a>
+                                and <a href="#" class="text-blue-600 hover:underline">Cancellation Policy</a>. I
+                                understand that this booking will be processed immediately.
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submitBtn"
+                            class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 hover:shadow-xl transition transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
+                            Confirm Booking
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Price Summary -->
+            <div class="lg:col-span-1">
+                <div class="booking-card p-6 sticky top-24">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6">Price Summary</h3>
+
+                    <div class="space-y-4 mb-6 border-b border-slate-100 pb-6">
+                        <div class="flex justify-between text-slate-600">
+                            <span>Base Price</span>
+                            <span class="font-bold" id="basePriceDisplay">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-slate-600">
+                            <span>Travelers</span>
+                            <span class="font-bold" id="travelersDisplay">x 1</span>
+                        </div>
+                        <div class="flex justify-between text-slate-600">
+                            <span>Taxes & Fees (10%)</span>
+                            <span class="font-bold" id="taxDisplay">$0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-end mb-8">
+                        <span class="text-lg font-bold text-slate-900">Total</span>
+                        <span class="text-3xl font-bold text-blue-600" id="totalDisplay">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+
+</html>

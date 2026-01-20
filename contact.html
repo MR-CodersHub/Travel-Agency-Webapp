@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | TerraQuest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .contact-hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
+                url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 text-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-compass"></i> TerraQuest
+            </div>
+
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="./index.html" class="hover:text-blue-600 transition">Home</a>
+                <a href="./about.html" class="hover:text-blue-600 transition">About</a>
+                <a href="./destinations.html" class="hover:text-blue-600 transition">Destinations</a>
+                <a href="./contact.html" class="hover:text-blue-600 transition">Contact</a>
+
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="./booking.html"><button
+                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg">
+                        Book Now
+                    </button></a>
+
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative">
+                    <button id="auth-trigger" onclick="Auth.toggleDropdown()"
+                        class="w-10 h-10 rounded-full bg-blue-500/20 text-white hover:bg-blue-500/30 flex items-center justify-center transition focus:outline-none backdrop-blur-sm border border-white/20">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="auth-dropdown"
+                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50 text-gray-900">
+                        <div id="dropdown-content" class="py-1">
+                            <!-- Content injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+
+    <header class="contact-hero h-[40vh] flex items-center justify-center text-center text-white pt-20 px-6">
+        <div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+            <p class="text-lg md:text-xl opacity-90 max-w-xl mx-auto">Have questions about a destination or need a
+                custom itinerary? We're here to help you plan your journey.</p>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto py-20 px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+            <div class="lg:col-span-1 space-y-8">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Get in Touch</h2>
+                    <p class="text-gray-600 mb-8">Reach out via any of these channels. Our travel experts usually
+                        respond within 24 hours.</p>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div
+                        class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Our Office</h4>
+                        <p class="text-gray-500">123 Adventure Way, Manhattan<br>New York, NY 10001</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div
+                        class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Phone Number</h4>
+                        <p class="text-gray-500">+1 (555) 000-1234</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div
+                        class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Email Address</h4>
+                        <p class="text-gray-500">hello@terraquest.com</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 border-t pt-8">
+                    <div
+                        class="w-12 h-12 bg-gray-100 text-gray-600 rounded-xl flex items-center justify-center shrink-0">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Working Hours</h4>
+                        <p class="text-gray-500">Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 2:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <div class="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gray-100">
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Full Name</label>
+                                <input type="text" placeholder="John Doe" class="form-input" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Email Address</label>
+                                <input type="email" placeholder="john@example.com" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Phone (Optional)</label>
+                                <input type="tel" placeholder="+1..." class="form-input">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Inquiry Type</label>
+                                <select class="form-input">
+                                    <option>General Inquiry</option>
+                                    <option>Custom Trip Planning</option>
+                                    <option>Existing Booking Support</option>
+                                    <option>Partner/Business</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Your Message</label>
+                            <textarea rows="5" placeholder="Tell us about your dream trip..."
+                                class="form-input"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+                            Send Message
+                        </button>
+                    </form>
+                    <div id="successMsg"
+                        class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-xl text-center font-medium">
+                        Message sent successfully! We'll be in touch soon.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="h-96 w-full bg-gray-200 relative transition duration-700">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.9147703055!2d-74.11976373095733!3d40.69740344222377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1641000000000!5m2!1sen!2sus"
+            class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+        <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+            <div class="bg-white px-6 py-3 rounded-full shadow-2xl font-bold flex items-center gap-2">
+                <i class="fas fa-map-pin text-red-500"></i> Visit Our Office
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Common Questions</h2>
+        <div class="space-y-4">
+            <details
+                class="group bg-white border border-gray-100 rounded-2xl p-6 shadow-sm cursor-pointer open:shadow-md transition">
+                <summary class="flex justify-between items-center font-bold text-lg list-none">
+                    Do you offer travel insurance?
+                    <i class="fas fa-chevron-down transition group-open:rotate-180"></i>
+                </summary>
+                <p class="text-gray-500 mt-4">Yes, we provide comprehensive travel insurance options for all our
+                    international packages through our trusted partners.</p>
+            </details>
+            <details
+                class="group bg-white border border-gray-100 rounded-2xl p-6 shadow-sm cursor-pointer open:shadow-md transition">
+                <summary class="flex justify-between items-center font-bold text-lg list-none">
+                    Can I customize an existing package?
+                    <i class="fas fa-chevron-down transition group-open:rotate-180"></i>
+                </summary>
+                <p class="text-gray-500 mt-4">Absolutely! Every package on our site serves as a base. Our experts can
+                    tweak any detail to fit your preference.</p>
+            </details>
+        </div>
+        <div class="text-center mt-10">
+            <a href="faq.html" class="text-blue-600 font-bold border-b-2 border-blue-600">View All FAQs</a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="fas fa-compass"></i> TerraQuest
+                </div>
+                <p class="text-gray-400 leading-relaxed">Making the world accessible to everyone through curated travel
+                    experiences and unparalleled support.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Destinations</a></li>
+                    <li><a href="#" class="hover:text-white transition">Special Offers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Travel Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Contact</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><i class="fas fa-phone mr-2"></i> +1 (555) 000-1234</li>
+                    <li><i class="fas fa-envelope mr-2"></i> hello@terraquest.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Adventure Way, NY</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Follow Us</h4>
+                <div class="flex gap-4 text-2xl">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            &copy; 2024 TerraQuest Travel Agency. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Navigation and Color Change on Scroll
+        window.onscroll = function () {
+            const nav = document.getElementById("navbar");
+            if (window.pageYOffset > 50) {
+                nav.classList.add("nav-glass", "shadow-md");
+                nav.classList.remove("text-white");
+                nav.classList.add("text-gray-900");
+            } else {
+                nav.classList.remove("nav-glass", "shadow-md");
+                nav.classList.remove("text-gray-900");
+                nav.classList.add("text-white");
+            }
+        };
+    </script>
+
+    <script>
+        // Form Success Simulation with MockAPI
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Sending...';
+            btn.disabled = true;
+
+            // Use specific query for better reliability
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            const type = this.querySelector('select').value;
+            const message = this.querySelector('textarea').value;
+
+            await MockAPI.saveContactMessage({
+                name, email, phone, type, message
+            });
+
+            this.classList.add('hidden');
+            document.getElementById('successMsg').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>

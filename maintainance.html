@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance | TerraQuest Travel</title>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        .bg-pattern {
+            background-color: #ffffff;
+            background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-pattern min-h-screen flex items-center justify-center p-6 text-center">
+
+    <div class="max-w-xl w-full" x-data="timer()">
+        <div class="text-3xl font-bold text-blue-600 flex items-center justify-center gap-2 mb-12">
+            <i class="fas fa-compass"></i> TerraQuest
+        </div>
+
+        <div class="mb-8 inline-flex items-center justify-center w-24 h-24 bg-blue-50 text-blue-600 rounded-3xl">
+            <i class="fas fa-tools text-4xl"></i>
+        </div>
+
+        <h1 class="text-4xl font-black text-slate-900 mb-4">We’ll Be Back Soon</h1>
+        <p class="text-slate-500 text-lg mb-10 leading-relaxed">
+            We’re currently improving our systems to give you a smoother, faster booking experience. We apologize for the short detour.
+        </p>
+
+        <div class="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-xl shadow-blue-900/5 mb-10">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Estimated Return In</p>
+            <div class="flex justify-center gap-6">
+                <div>
+                    <span class="text-3xl font-bold text-slate-900" x-text="hours">00</span>
+                    <p class="text-[10px] uppercase font-bold text-slate-400">Hours</p>
+                </div>
+                <div class="text-3xl font-bold text-slate-200">:</div>
+                <div>
+                    <span class="text-3xl font-bold text-slate-900" x-text="minutes">00</span>
+                    <p class="text-[10px] uppercase font-bold text-slate-400">Minutes</p>
+                </div>
+                <div class="text-3xl font-bold text-slate-200">:</div>
+                <div>
+                    <span class="text-3xl font-bold text-slate-900" x-text="seconds">00</span>
+                    <p class="text-[10px] uppercase font-bold text-slate-400">Seconds</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <p class="text-sm text-slate-600 font-medium">Have an urgent booking or need help right now?</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:support@terraquest.com" class="flex items-center gap-2 text-blue-600 font-bold hover:underline">
+                    <i class="far fa-envelope"></i> support@terraquest.com
+                </a>
+                <span class="text-slate-300 hidden sm:inline">|</span>
+                <a href="tel:+1234567890" class="flex items-center gap-2 text-blue-600 font-bold hover:underline">
+                    <i class="fas fa-phone-alt text-xs"></i> +1 (234) 567-890
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-12 flex justify-center gap-6 text-slate-400">
+            <a href="#" class="hover:text-blue-600 transition"><i class="fab fa-instagram text-xl"></i></a>
+            <a href="#" class="hover:text-blue-600 transition"><i class="fab fa-facebook text-xl"></i></a>
+            <a href="#" class="hover:text-blue-600 transition"><i class="fab fa-twitter text-xl"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function timer() {
+            return {
+                hours: '02',
+                minutes: '45',
+                seconds: '00',
+                init() {
+                    // This mock logic reduces the seconds just to show dynamicity
+                    setInterval(() => {
+                        let sec = parseInt(this.seconds);
+                        if (sec > 0) {
+                            this.seconds = (sec - 1).toString().padStart(2, '0');
+                        } else {
+                            this.seconds = '59';
+                        }
+                    }, 1000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations | TerraQuest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .dest-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
+                url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .filter-btn.active {
+            background-color: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .destination-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .destination-card:hover {
+            transform: translateY(-12px);
+        }
+
+        /* Hide destinations that don't match filter */
+        .hidden-dest {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 text-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-compass"></i> TerraQuest
+            </div>
+
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="./index.html" class="hover:text-blue-600 transition">Home</a>
+                <a href="./about.html" class="hover:text-blue-600 transition">About</a>
+                <a href="./destinations.html" class="hover:text-blue-600 transition">Destinations</a>
+                <a href="./contact.html" class="hover:text-blue-600 transition">Contact</a>
+
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="./booking.html"><button
+                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg">
+                        Book Now
+                    </button></a>
+
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative">
+                    <button id="auth-trigger" onclick="Auth.toggleDropdown()"
+                        class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition focus:outline-none">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="auth-dropdown"
+                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50">
+                        <div id="dropdown-content" class="py-1">
+                            <!-- Content injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+
+    <header class="dest-hero h-[50vh] flex items-center justify-center text-center text-white">
+        <div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">Explore Destinations</h1>
+            <p class="text-xl opacity-90">Discover places worth remembering</p>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
+        <div class="bg-white p-6 rounded-3xl mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="md:col-span-2 relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="destSearch" placeholder="Search by city or country..."
+                        class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                </div>
+                <select class="py-3 px-4 rounded-xl border border-gray-200 focus:outline-none">
+                    <option>Budget Range</option>
+                    <option>$500 - $1,500</option>
+                    <option>$1,500 - $3,000</option>
+                    <option>$3,000+</option>
+                </select>
+                <select class="py-3 px-4 rounded-xl border border-gray-200 focus:outline-none">
+                    <option>Travel Season</option>
+                    <option>Summer (Jun-Aug)</option>
+                    <option>Winter (Dec-Feb)</option>
+                    <option>Spring/Autumn</option>
+                </select>
+            </div>
+
+            <div class="flex flex-wrap gap-3 mt-8 justify-center">
+                <button onclick="filterDest('all')"
+                    class="filter-btn active px-6 py-2 rounded-full border border-gray-200 font-medium hover:border-blue-600 transition">All</button>
+                <button onclick="filterDest('beach')"
+                    class="filter-btn px-6 py-2 rounded-full border border-gray-200 font-medium hover:border-blue-600 transition">Beach</button>
+                <button onclick="filterDest('mountain')"
+                    class="filter-btn px-6 py-2 rounded-full border border-gray-200 font-medium hover:border-blue-600 transition">Mountains</button>
+                <button onclick="filterDest('city')"
+                    class="filter-btn px-6 py-2 rounded-full border border-gray-200 font-medium hover:border-blue-600 transition">Cities</button>
+                <button onclick="filterDest('adventure')"
+                    class="filter-btn px-6 py-2 rounded-full border border-gray-200 font-medium hover:border-blue-600 transition">Adventure</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto py-20 px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="destGrid">
+
+            <div class="destination-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl"
+                data-category="beach">
+                <div class="relative h-72 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800"
+                        class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Bali">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-bold shadow-lg">Starting
+                            $899</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl font-bold">Bali, Indonesia</h3>
+                        <span class="text-gray-400 text-sm italic"><i class="fas fa-sun mr-1"></i> Best in
+                            Apr-Oct</span>
+                    </div>
+                    <p class="text-gray-500 mb-6 line-clamp-2">Tropical paradise featuring volcanic mountains, iconic
+                        rice paddies, and coral reefs.</p>
+                    <div class="flex items-center justify-between border-t pt-4">
+                        <div class="flex gap-4 text-gray-400 text-sm">
+                            <span><i class="fas fa-map-marker-alt text-blue-500"></i> Southeast Asia</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="./city1.html"><button
+                                    class="text-gray-500 font-bold hover:text-blue-600 transition">View</button></a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl"
+                data-category="beach">
+                <div class="relative h-72 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800"
+                        class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Paris">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-bold shadow-lg">Starting
+                            $1,299</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl font-bold">Paris, France</h3>
+                        <span class="text-gray-400 text-sm italic"><i class="fas fa-sun mr-1"></i> Best in
+                            Apr-Oct</span>
+                    </div>
+                    <p class="text-gray-500 mb-6 line-clamp-2">Discover the city of lights, culture, and fine dining.
+                    </p>
+                    <div class="flex items-center justify-between border-t pt-4">
+                        <div class="flex gap-4 text-gray-400 text-sm">
+                            <span><i class="fas fa-map-marker-alt text-blue-500"></i> Europe</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="./city2.html"><button
+                                    class="text-gray-500 font-bold hover:text-blue-600 transition">View</button></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl"
+                data-category="mountain">
+                <div class="relative h-72 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&q=80&w=800"
+                        class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Swiss Alps">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-bold shadow-lg">Starting
+                            $1,550</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl font-bold">Swiss Alps</h3>
+                        <span class="text-gray-400 text-sm italic"><i class="fas fa-snowflake mr-1"></i> Best in
+                            Dec-Mar</span>
+                    </div>
+                    <p class="text-gray-500 mb-6 line-clamp-2">World-class ski resorts, charming chalets, and
+                        breathtaking mountain peaks.</p>
+                    <div class="flex items-center justify-between border-t pt-4">
+                        <div class="flex gap-4 text-gray-400 text-sm">
+                            <span><i class="fas fa-map-marker-alt text-blue-500"></i> Europe</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="./city3.html"><button
+                                    class="text-gray-500 font-bold hover:text-blue-600 transition">View</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="destination-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl"
+                data-category="city">
+                <div class="relative h-72 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800"
+                        class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Tokyo">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-bold shadow-lg">Starting
+                            $1,200</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl font-bold">Tokyo, Japan</h3>
+                        <span class="text-gray-400 text-sm italic"><i class="fas fa-leaf mr-1"></i> Best in
+                            Mar-May</span>
+                    </div>
+                    <p class="text-gray-500 mb-6 line-clamp-2">A mix of ultramodern skyscrapers and traditional temples
+                        with unique culinary scenes.</p>
+                    <div class="flex items-center justify-between border-t pt-4">
+                        <div class="flex gap-4 text-gray-400 text-sm">
+                            <span><i class="fas fa-map-marker-alt text-blue-500"></i> East Asia</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="./city4.html"><button
+                                    class="text-gray-500 font-bold hover:text-blue-600 transition">View</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destination-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl"
+                data-category="city">
+                <div class="relative h-72 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800"
+                        class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Santorini">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-bold shadow-lg">Starting
+                            $1,200</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl font-bold">Santorini, Greece</h3>
+                        <span class="text-gray-400 text-sm italic"><i class="fas fa-leaf mr-1"></i> Best in
+                            Mar-May</span>
+                    </div>
+                    <p class="text-gray-500 mb-6 line-clamp-2">Iconic white-washed buildings overlooking the deep blue
+                        Aegean Sea.</p>
+                    <div class="flex items-center justify-between border-t pt-4">
+                        <div class="flex gap-4 text-gray-400 text-sm">
+                            <span><i class="fas fa-map-marker-alt text-blue-500"></i> East Asia</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="./city5.html"><button
+                                    class="text-gray-500 font-bold hover:text-blue-600 transition">View</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="destination-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl"
+                data-category="adventure">
+                <div class="relative h-72 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=800"
+                        class="w-full h-full object-cover transition duration-500 hover:scale-110" alt="Patagonia">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-bold shadow-lg">Starting
+                            $1,800</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl font-bold">Patagonia, Argentina</h3>
+                        <span class="text-gray-400 text-sm italic"><i class="fas fa-hiking mr-1"></i> Nov-Mar</span>
+                    </div>
+                    <p class="text-gray-500 mb-6 line-clamp-2">The end of the world. Experience massive glaciers and
+                        rugged granite towers.</p>
+                    <div class="flex items-center justify-between border-t pt-4">
+                        <span class="text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-blue-500"></i> South
+                            America</span>
+                        <div class="flex gap-2">
+                            <a href="city6.html"><button
+                                    class="text-gray-500 font-bold hover:text-blue-600 transition">View</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900 text-white px-6 mb-20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+            <div class="max-w-xl">
+                <h2 class="text-4xl font-bold mb-4">Don't see your dream destination?</h2>
+                <p class="text-slate-400 text-lg">Our experts can craft a custom itinerary for any corner of the globe.
+                    Tell us where you want to go!</p>
+            </div>
+            <a href="./contact.html"><button
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full font-bold text-lg transition shadow-xl whitespace-nowrap">
+                    Contact Us
+                </button></a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="fas fa-compass"></i> TerraQuest
+                </div>
+                <p class="text-gray-400 leading-relaxed">Making the world accessible to everyone through curated travel
+                    experiences and unparalleled support.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Destinations</a></li>
+                    <li><a href="#" class="hover:text-white transition">Special Offers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Travel Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Contact</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><i class="fas fa-phone mr-2"></i> +1 (555) 000-1234</li>
+                    <li><i class="fas fa-envelope mr-2"></i> hello@terraquest.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Adventure Way, NY</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Follow Us</h4>
+                <div class="flex gap-4 text-2xl">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            &copy; 2024 TerraQuest Travel Agency. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Navigation and Color Change on Scroll
+        window.onscroll = function () {
+            const nav = document.getElementById("navbar");
+            if (window.pageYOffset > 50) {
+                nav.classList.add("nav-glass", "shadow-md");
+                nav.classList.remove("text-white");
+                nav.classList.add("text-gray-900");
+            } else {
+                nav.classList.remove("nav-glass", "shadow-md");
+                nav.classList.remove("text-gray-900");
+                nav.classList.add("text-white");
+            }
+        };
+    </script>
+
+    <script>
+        // Interactive Filter Logic
+        function filterDest(category) {
+            // Update buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText.toLowerCase() === category || (category === 'all' && btn.innerText === 'All')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Filter cards
+            const cards = document.querySelectorAll('.destination-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden-dest');
+                } else {
+                    card.classList.add('hidden-dest');
+                }
+            });
+        }
+
+        // Search Bar Logic
+        document.getElementById('destSearch').addEventListener('input', function (e) {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.destination-card');
+
+            cards.forEach(card => {
+                const name = card.querySelector('h3').innerText.toLowerCase();
+                if (name.includes(term)) {
+                    card.classList.remove('hidden-dest');
+                } else {
+                    card.classList.add('hidden-dest');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

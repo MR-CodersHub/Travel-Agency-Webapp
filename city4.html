@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokyo, Japan` | TerraQuest Travel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Added a placeholder style link as per instruction. Please replace with the actual link if available. -->
+    <link href="style.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+        }
+
+        .sticky-cta {
+            animation: slideUp 0.5s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 text-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-compass"></i> TerraQuest
+            </div>
+
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="./index.html" class="hover:text-blue-600 transition">Home</a>
+                <a href="./about.html" class="hover:text-blue-600 transition">About</a>
+                <a href="./destinations.html" class="hover:text-blue-600 transition">Destinations</a>
+                <a href="./contact.html" class="hover:text-blue-600 transition">Contact</a>
+
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="./booking.html"><button
+                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg">
+                        Book Now
+                    </button></a>
+
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative">
+                    <button id="auth-trigger" onclick="Auth.toggleDropdown()"
+                        class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition focus:outline-none">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="auth-dropdown"
+                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50">
+                        <div id="dropdown-content" class="py-1">
+                            <!-- Content injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+
+    <section class="relative h-[80vh] flex items-center justify-center text-white overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=2000"
+            class="absolute inset-0 w-full h-full object-cover" alt="Tokyo">
+        <div class="absolute inset-0 hero-gradient"></div>
+
+        <div class="relative z-10 text-center px-6">
+            <span class="uppercase tracking-[0.3em] text-sm font-bold mb-4 block">Neon Dreams & Ancient Zen</span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Tokyo, Japan</h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 opacity-90">Experience the world's most iconic sunsets,
+                volcanic beaches, and white-washed luxury.</p>
+
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="booking.html?dest=Tokyo,%20Japan&price=2499&duration=7%20Days"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full font-bold transition shadow-xl">Book
+                    This Trip</a>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 lg:grid-cols-3 gap-16">
+        <div class="lg:col-span-2">
+            <h2 class="text-3xl font-bold mb-6">Neon Dreams & Ancient Zen</h2>
+            <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                Tokyo is the precious gem of the Aegean. It is actually a group of islands consisting of Thíra,
+                Thirassiá, Aspronísi, Palea and Nea Kaméni in the southernmost part of Cyclades. Whether you are looking
+                for a romantic honeymoon escape or a deep dive into ancient Minoan history, Santorini offers a unique
+                blend of relaxation and adventure.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-10">
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                    <i class="fas fa-heart text-blue-500 mb-2"></i>
+                    <h4 class="font-bold">Honeymoon</h4>
+                    <p class="text-xs text-slate-500">Perfect for couples</p>
+                </div>
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                    <i class="fas fa-camera text-blue-500 mb-2"></i>
+                    <h4 class="font-bold">Photography</h4>
+                    <p class="text-xs text-slate-500">Iconic landscapes</p>
+                </div>
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                    <i class="fas fa-wine-glass-alt text-blue-500 mb-2"></i>
+                    <h4 class="font-bold">Winery</h4>
+                    <p class="text-xs text-slate-500">Volcanic vineyards</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] shadow-2xl">
+            <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                <i class="fas fa-calendar-alt text-blue-400"></i> Best Time to Visit
+            </h3>
+            <div class="space-y-6">
+                <div>
+                    <span class="text-blue-400 font-bold block mb-1">Peak Season (Jun - Sep)</span>
+                    <p class="text-sm text-slate-300">Hot weather, bustling nightlife, and clear blue skies. Perfect for
+                        beach lovers.</p>
+                </div>
+                <div class="border-t border-slate-700 pt-6">
+                    <span class="text-blue-400 font-bold block mb-1">Shoulder Season (Apr - May, Oct)</span>
+                    <p class="text-sm text-slate-300">Pleasant temperatures, fewer crowds, and blooming wildflowers.
+                        Best for hiking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="bg-white p-10 rounded-3xl border border-slate-200">
+            <h3 class="text-2xl font-bold mb-6 text-green-600">What’s Included</h3>
+            <ul class="space-y-4 text-slate-600">
+                <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> 6 Nights in 5-star
+                    Boutique Accommodation</li>
+                <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> Daily Mediterranean
+                    Breakfast</li>
+                <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> All Inter-island Private
+                    Transfers</li>
+                <li class="flex items-center gap-3"><i class="fas fa-check text-green-500"></i> 3 Guided Cultural Tours
+                </li>
+            </ul>
+        </div>
+        <div class="bg-blue-50 p-10 rounded-3xl border border-blue-100">
+            <h3 class="text-2xl font-bold mb-2">Investment</h3>
+            <div class="flex items-baseline gap-2 mb-4">
+                <span class="text-4xl font-extrabold text-slate-900">$2,499</span>
+                <span class="text-slate-500">/ per person</span>
+            </div>
+            <p class="text-sm text-slate-600 mb-8">Transparent pricing. No hidden resort fees or local taxes. This price
+                covers all stated inclusions.</p>
+            <button
+                class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition">Proceed
+                to Booking</button>
+        </div>
+    </section>
+
+    <section class="bg-slate-900 text-white py-20 px-6 mb-20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12">Practical Travel Info</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div>
+                    <i class="fas fa-passport text-blue-400 text-2xl mb-4"></i>
+                    <h4 class="font-bold mb-2">Visa & Entry</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Schengen Visa required for non-EU citizens.
+                        Passports must be valid for at least 6 months.</p>
+                </div>
+                <div>
+                    <i class="fas fa-coins text-blue-400 text-2xl mb-4"></i>
+                    <h4 class="font-bold mb-2">Currency</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Euro (€). Cards are widely accepted, but we
+                        recommend carrying small cash for local villages.</p>
+                </div>
+                <div>
+                    <i class="fas fa-shield-virus text-blue-400 text-2xl mb-4"></i>
+                    <h4 class="font-bold mb-2">Safety</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Santorini is extremely safe for travelers. Tap
+                        water is non-potable; bottled water is provided.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 z-50 md:hidden sticky-cta">
+        <div class="flex justify-between items-center">
+            <div>
+                <span class="text-xs text-slate-400 block uppercase font-bold">Starting at</span>
+                <span class="text-xl font-bold">$2,499</span>
+            </div>
+            <a href="booking.html"><button class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold">Book
+                    Now</button></a>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 text-white pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="fas fa-compass"></i> TerraQuest
+                </div>
+                <p class="text-gray-400 leading-relaxed">Making the world accessible to everyone through curated travel
+                    experiences and unparalleled support.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Destinations</a></li>
+                    <li><a href="#" class="hover:text-white transition">Special Offers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Travel Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Contact</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><i class="fas fa-phone mr-2"></i> +1 (555) 000-1234</li>
+                    <li><i class="fas fa-envelope mr-2"></i> hello@terraquest.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Adventure Way, NY</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Follow Us</h4>
+                <div class="flex gap-4 text-2xl">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            &copy; 2024 TerraQuest Travel Agency. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Navigation and Color Change on Scroll
+        window.onscroll = function () {
+            const nav = document.getElementById("navbar");
+            if (window.pageYOffset > 50) {
+                nav.classList.add("nav-glass", "shadow-md");
+                nav.classList.remove("text-white");
+                nav.classList.add("text-gray-900");
+            } else {
+                nav.classList.remove("nav-glass", "shadow-md");
+                nav.classList.remove("text-gray-900");
+                nav.classList.add("text-white");
+            }
+        };
+    </script>
+</body>
+
+</html>

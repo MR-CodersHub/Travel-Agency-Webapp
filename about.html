@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | TerraQuest Travel Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .hero-about {
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)),
+                url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-slate-900">
+
+    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 text-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-compass"></i> TerraQuest
+            </div>
+
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="./index.html" class="hover:text-blue-600 transition">Home</a>
+                <a href="./about.html" class="hover:text-blue-600 transition">About</a>
+                <a href="./destinations.html" class="hover:text-blue-600 transition">Destinations</a>
+                <a href="./contact.html" class="hover:text-blue-600 transition">Contact</a>
+
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="./booking.html"><button
+                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg">
+                        Book Now
+                    </button></a>
+
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative">
+                    <button id="auth-trigger" onclick="Auth.toggleDropdown()"
+                        class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition focus:outline-none">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="auth-dropdown"
+                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50">
+                        <div id="dropdown-content" class="py-1">
+                            <!-- Content injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+
+    <header class="hero-about h-[60vh] flex items-center justify-center text-center text-white pt-20">
+        <div class="max-w-3xl px-6">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">About Us</h1>
+            <p class="text-xl md:text-2xl font-light opacity-90">Creating meaningful travel experiences that last a
+                lifetime.</p>
+        </div>
+    </header>
+
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <h2 class="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">Our Journey</h2>
+                <h3 class="text-4xl font-bold mb-6 leading-tight">We help you find the heart of every destination.</h3>
+                <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                    Founded in 2012, TerraQuest began with a simple mission: to bridge the gap between "sightseeing" and
+                    "experiencing." What started as a small boutique office in New York has grown into a global team of
+                    travel enthusiasts.
+                </p>
+                <p class="text-gray-600 text-lg leading-relaxed">
+                    We specialize in curated international tours and bespoke custom itineraries, ensuring that no two
+                    trips are ever the same. We believe travel should be transformative, seamless, and deeply personal.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-6 reveal">
+                <div class="p-8 bg-blue-50 rounded-3xl text-center">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">12+</div>
+                    <div class="text-gray-600 font-medium">Years Experience</div>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-3xl text-center">
+                    <div class="text-4xl font-bold text-slate-800 mb-2">50k+</div>
+                    <div class="text-gray-600 font-medium">Happy Travelers</div>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-3xl text-center">
+                    <div class="text-4xl font-bold text-slate-800 mb-2">120+</div>
+                    <div class="text-gray-600 font-medium">Destinations</div>
+                </div>
+                <div class="p-8 bg-blue-50 rounded-3xl text-center">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">24/7</div>
+                    <div class="text-gray-600 font-medium">Guest Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900 text-white px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="p-10 border border-slate-700 rounded-3xl hover:bg-slate-800 transition">
+                <i class="fas fa-bullseye text-blue-400 text-3xl mb-6"></i>
+                <h4 class="text-2xl font-bold mb-4">Our Mission</h4>
+                <p class="text-slate-400 leading-relaxed">To empower travelers with expertly crafted journeys that
+                    foster cultural understanding and provide effortless, high-quality travel management.</p>
+            </div>
+            <div class="p-10 border border-slate-700 rounded-3xl hover:bg-slate-800 transition">
+                <i class="fas fa-eye text-blue-400 text-3xl mb-6"></i>
+                <h4 class="text-2xl font-bold mb-4">Our Vision</h4>
+                <p class="text-slate-400 leading-relaxed">To become the world’s most trusted travel partner, recognized
+                    for our commitment to sustainable tourism and personalized human connection.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-gray-50">
+        <div class="max-w-7xl mx-auto text-center mb-16 reveal">
+            <h2 class="text-4xl font-bold mb-4">Why Travel With Us?</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">We combine the power of local expertise with global resources to
+                give you the best of both worlds.</p>
+        </div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition">
+                <i class="fas fa-map-marked-alt text-blue-600 text-3xl mb-6"></i>
+                <h5 class="text-xl font-bold mb-3">Custom Itineraries</h5>
+                <p class="text-gray-500">Your trip, your way. We build schedules around your interests and pace.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition">
+                <i class="fas fa-shield-alt text-blue-600 text-3xl mb-6"></i>
+                <h5 class="text-xl font-bold mb-3">Verified Partners</h5>
+                <p class="text-gray-500">We only work with hotels and airlines that meet our strict safety and quality
+                    standards.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition">
+                <i class="fas fa-hand-holding-usd text-blue-600 text-3xl mb-6"></i>
+                <h5 class="text-xl font-bold mb-3">Transparent Pricing</h5>
+                <p class="text-gray-500">No hidden fees. We provide clear, itemized costs for every package we offer.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl font-bold mb-4">Meet the Experts</h2>
+            <p class="text-gray-600">The passionate travelers behind your favorite memories.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 reveal">
+            <div class="group">
+                <div class="relative overflow-hidden rounded-2xl mb-4">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600"
+                        class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500"
+                        alt="CEO">
+                </div>
+                <h5 class="text-xl font-bold">David Thorne</h5>
+                <p class="text-blue-600 text-sm font-semibold uppercase">Founder & CEO</p>
+            </div>
+            <div class="group">
+                <div class="relative overflow-hidden rounded-2xl mb-4">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600"
+                        class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500"
+                        alt="Head of Tours">
+                </div>
+                <h5 class="text-xl font-bold">Elena Rodriguez</h5>
+                <p class="text-blue-600 text-sm font-semibold uppercase">Head of Global Tours</p>
+            </div>
+            <div class="group">
+                <div class="relative overflow-hidden rounded-2xl mb-4">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600"
+                        class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500"
+                        alt="Consultant">
+                </div>
+                <h5 class="text-xl font-bold">Marcus Chen</h5>
+                <p class="text-blue-600 text-sm font-semibold uppercase">Luxury Travel Consultant</p>
+            </div>
+            <div class="group">
+                <div class="relative overflow-hidden rounded-2xl mb-4">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600"
+                        class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500"
+                        alt="Customer Success">
+                </div>
+                <h5 class="text-xl font-bold">Sophie Bennett</h5>
+                <p class="text-blue-600 text-sm font-semibold uppercase">Customer Experience</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-blue-600 text-white text-center px-6">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-4xl font-bold mb-6">Let’s Start Your Journey Together</h2>
+            <p class="text-lg opacity-80 mb-10">Our experts are standing by to help you plan the perfect escape. Reach
+                out today for a free consultation.</p>
+            <div class="flex gap-4 justify-center">
+                <a href="contact.html"
+                    class="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition">Get In
+                    Touch</a>
+                <a href="destinations.html"
+                    class="bg-blue-700 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition">View
+                    Destinations</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <div class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="fas fa-compass"></i> TerraQuest
+                </div>
+                <p class="text-gray-400 leading-relaxed">Making the world accessible to everyone through curated travel
+                    experiences and unparalleled support.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Destinations</a></li>
+                    <li><a href="#" class="hover:text-white transition">Special Offers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Travel Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Contact</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><i class="fas fa-phone mr-2"></i> +1 (555) 000-1234</li>
+                    <li><i class="fas fa-envelope mr-2"></i> hello@terraquest.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Adventure Way, NY</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Follow Us</h4>
+                <div class="flex gap-4 text-2xl">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            &copy; 2024 TerraQuest Travel Agency. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Navigation and Color Change on Scroll
+        window.onscroll = function () {
+            const nav = document.getElementById("navbar");
+            if (window.pageYOffset > 50) {
+                nav.classList.add("nav-glass", "shadow-md");
+                nav.classList.remove("text-white");
+                nav.classList.add("text-gray-900");
+            } else {
+                nav.classList.remove("nav-glass", "shadow-md");
+                nav.classList.remove("text-gray-900");
+                nav.classList.add("text-white");
+            }
+        };
+    </script>
+
+    <script>
+        // Simple Scroll Animation Reveal
+        window.addEventListener('scroll', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const revealTop = el.getBoundingClientRect().top;
+                if (revealTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        });
+        // Trigger once on load
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+
+</html>
