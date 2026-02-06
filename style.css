@@ -1,0 +1,40 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Issue 1: Navbar Visibility & Contrast */
+.nav-glass {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+/* Ensure links are visible on dark backgrounds (when page is at top) */
+#navbar.text-white .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#navbar.text-white .nav-link:hover {
+    color: white;
+}
+
+/* Ensure links are visible on light backgrounds (when scrolled) */
+#navbar.text-gray-900 .nav-link {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+#navbar.text-gray-900 .nav-link:hover {
+    color: #2563eb;
+}
+
+/* Transition for links */
+.nav-link {
+    transition: all 0.2s ease-in-out;
+}

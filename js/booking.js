@@ -4,13 +4,13 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-    // 1. Check Auth (Handle case where Auth is missing to prevent crash)
+    // 1. Check Auth (Allow viewing page, but will check on submit)
+    /* 
     if (typeof Auth !== 'undefined') {
         const user = await Auth.enforceAuth();
-        if (!user) return; // Redirects handled by Auth
-    } else {
-        console.warn('Auth module not found. Skipping authentication check.');
-    }
+        if (!user) return; 
+    } 
+    */
 
     // 2. Parse URL Parameters
     const urlParams = new URLSearchParams(window.location.search);
