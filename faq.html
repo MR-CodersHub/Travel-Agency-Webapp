@@ -35,7 +35,7 @@
 
 <body class="text-slate-800">
 
-    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 text-white">
+    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 nav-glass shadow-md text-gray-900">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
                 <i class="fas fa-compass"></i> TerraQuest
@@ -213,19 +213,8 @@
     </footer>
 
     <script>
-        // Sticky Navigation and Color Change on Scroll
-        window.onscroll = function () {
-            const nav = document.getElementById("navbar");
-            if (window.pageYOffset > 50) {
-                nav.classList.add("nav-glass", "shadow-md");
-                nav.classList.remove("text-white");
-                nav.classList.add("text-gray-900");
-            } else {
-                nav.classList.remove("nav-glass", "shadow-md");
-                nav.classList.remove("text-gray-900");
-                nav.classList.add("text-white");
-            }
-        };
+        // Initialize Navbar (removed scroll dependency for static fixed look)
+        document.getElementById("navbar").classList.add("nav-glass", "shadow-md", "text-gray-900");
     </script>
 
     <script>
