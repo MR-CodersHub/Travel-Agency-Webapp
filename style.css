@@ -38,3 +38,12 @@ body {
 .nav-link {
     transition: all 0.2s ease-in-out;
 }
+
+/* Mobile Menu */
+#mobile-menu {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#mobile-menu.open {
+    transform: translateX(0);
+}

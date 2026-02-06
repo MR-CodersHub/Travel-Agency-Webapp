@@ -67,6 +67,16 @@ const Auth = {
         if (dropdown) dropdown.classList.toggle('hidden');
     },
 
+    // Toggle Mobile Menu
+    toggleMenu: () => {
+        const menu = document.getElementById('mobile-menu');
+        if (menu) {
+            menu.classList.toggle('open');
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+        }
+    },
+
     // Initialize Navbar UI
     initNavbar: async () => {
         const dropdownContent = document.getElementById('dropdown-content');

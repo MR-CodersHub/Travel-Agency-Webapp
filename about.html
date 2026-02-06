@@ -52,9 +52,9 @@
                 <a href="./contact.html" class="nav-link hover:text-blue-600 transition">Contact</a>
 
             </div>
-            <div class="flex items-center gap-4">
-                <a href="./booking.html"><button
-                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg">
+            <div class="flex items-center gap-2 md:gap-4">
+                <a href="./booking.html" class="hidden md:block"><button
+                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg whitespace-nowrap">
                         Book Now
                     </button></a>
 
@@ -67,13 +67,58 @@
 
                     <!-- Dropdown Menu -->
                     <div id="auth-dropdown"
-                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50">
+                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50 text-slate-900">
                         <div id="dropdown-content" class="py-1">
                             <!-- Content injected by JS -->
                         </div>
                     </div>
                 </div>
+
+                <!-- Hamburger Menu Button -->
+                <button id="menu-toggle" onclick="Auth.toggleMenu()"
+                    class="md:hidden text-2xl focus:outline-none ml-2 text-current transition-colors">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-white z-[60] translate-x-full md:hidden flex flex-col p-8 text-slate-900">
+            <div class="flex justify-between items-center mb-12">
+                <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                    <i class="fas fa-compass"></i> TerraQuest
+                </div>
+                <button onclick="Auth.toggleMenu()" class="text-3xl focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="flex flex-col gap-6 text-xl font-semibold">
+                <a href="./index.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Home <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./about.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    About <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./destinations.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Destinations <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./contact.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Contact <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+
+                <a href="./booking.html" onclick="Auth.toggleMenu()" class="mt-4">
+                    <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg">
+                        Book Now
+                    </button>
+                </a>
+            </div>
+        </div>
         </div>
     </nav>
     <script src="js/mock-api.js"></script>

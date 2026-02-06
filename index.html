@@ -44,12 +44,11 @@
                 <a href="./about.html" class="nav-link hover:text-blue-600 transition">About</a>
                 <a href="./destinations.html" class="nav-link hover:text-blue-600 transition">Destinations</a>
                 <a href="./contact.html" class="nav-link hover:text-blue-600 transition">Contact</a>
-
             </div>
 
-            <div class="flex items-center gap-4">
-                <a href="./booking.html"><button
-                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg">
+            <div class="flex items-center gap-2 md:gap-4">
+                <a href="./booking.html" class="hidden md:block"><button
+                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg whitespace-nowrap">
                         Book Now
                     </button></a>
 
@@ -68,17 +67,63 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Hamburger Menu Button -->
+                <button id="menu-toggle" onclick="Auth.toggleMenu()"
+                    class="md:hidden text-2xl focus:outline-none ml-2 text-current transition-colors">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-white z-[60] translate-x-full md:hidden flex flex-col p-8 text-slate-900">
+            <div class="flex justify-between items-center mb-12">
+                <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                    <i class="fas fa-compass"></i> TerraQuest
+                </div>
+                <button onclick="Auth.toggleMenu()" class="text-3xl focus:outline-none hover:text-red-500 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="flex flex-col gap-6 text-xl font-semibold">
+                <a href="#" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Home <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./about.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    About <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./destinations.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Destinations <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./contact.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Contact <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+
+                <a href="./booking.html" onclick="Auth.toggleMenu()" class="mt-4">
+                    <button
+                        class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg active:scale-[0.98] transition">
+                        Book Now
+                    </button>
+                </a>
             </div>
         </div>
     </nav>
     <script src="js/mock-api.js"></script>
     <script src="js/auth.js"></script>
 
-    <section class="relative h-screen flex items-center justify-center text-center text-white px-4 hero-gradient">
-        <div class="max-w-4xl">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">Explore the World <br> <span
+    <section class="relative h-screen flex items-center justify-center text-center text-white px-8 hero-gradient">
+        <div class="max-w-4xl pt-20">
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">Explore the World <br> <span
                     class="text-blue-400">With Confidence</span></h1>
-            <p class="text-lg md:text-xl mb-10 opacity-90 max-w-2xl mx-auto">From custom luxury itineraries to
+            <p class="text-base sm:text-lg md:text-xl mb-10 opacity-90 max-w-2xl mx-auto">From custom luxury itineraries
+                to
                 budget-friendly guided tours, we handle the details so you can handle the memories.</p>
             <div class="flex flex-col md:flex-row gap-4 justify-center">
                 <a href="./destinations.html"><button
