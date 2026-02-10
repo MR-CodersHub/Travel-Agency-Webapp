@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerraQuest Vanguard | Unleash Your Inner Explorer</title>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        :root {
+            --adventure-blue: #2563eb;
+            --adventure-dark: #0f172a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        h1,
+        h2,
+        h3,
+        .heading-font {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .adventure-hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tour-gradient-border {
+            position: relative;
+            background: linear-gradient(to right, #2563eb, #1d4ed8);
+            padding: 2px;
+            border-radius: 1rem;
+        }
+
+        .tour-gradient-content {
+            background: white;
+            border-radius: 0.9rem;
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .btn-adventure {
+            background: var(--adventure-blue);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-adventure:hover {
+            background: #1d4ed8;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+  
+    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 nav-glass shadow-md text-gray-900">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="./index.html" class="text-2xl font-bold text-blue-600 flex items-center gap-2"><i class="fas fa-compass"></i> TerraQuest</a>
+
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="index.html" class="nav-link hover:text-blue-600 transition">Home</a>
+                <a href="./home-2.html" class="nav-link hover:text-blue-600 transition">Tour</a>
+                <a href="./about.html" class="nav-link hover:text-blue-600 transition">About</a>
+                <a href="./destinations.html" class="nav-link hover:text-blue-600 transition">Destinations</a>
+                <a href="./contact.html" class="nav-link hover:text-blue-600 transition">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-2 md:gap-4">
+                <a href="./booking.html" class="hidden md:block"><button
+                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg whitespace-nowrap">
+                        Book Now
+                    </button></a>
+
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative">
+                    <button id="auth-trigger" onclick="Auth.toggleDropdown()"
+                        class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition focus:outline-none">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="auth-dropdown"
+                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50">
+                        <div id="dropdown-content" class="py-1">
+                            <!-- Content injected by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hamburger Menu Button -->
+                <button id="menu-toggle" onclick="Auth.toggleMenu()"
+                    class="md:hidden text-2xl focus:outline-none ml-2 text-current transition-colors">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-white z-[60] translate-x-full md:hidden flex flex-col p-8 text-slate-900">
+            <div class="flex justify-between items-center mb-12">
+                <a href="./index.html" class="text-2xl font-bold text-blue-600 flex items-center gap-2"><i class="fas fa-compass"></i> TerraQuest</a>
+                <button onclick="Auth.toggleMenu()" class="text-3xl focus:outline-none hover:text-red-500 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="flex flex-col gap-6 text-xl font-semibold">
+                <a href="#" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Home <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./home-2.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Tour <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./about.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    About <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./destinations.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Destinations <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./contact.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Contact <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+
+                <a href="./booking.html" onclick="Auth.toggleMenu()" class="mt-4">
+                    <button
+                        class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg active:scale-[0.98] transition">
+                        Book Now
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+
+    <!-- Section 1: Hero -->
+    <header class="relative h-[90vh] flex items-center justify-center adventure-hero overflow-hidden">
+        <div class="absolute inset-0 bg-slate-900/40"></div>
+        <div class="max-w-5xl mx-auto px-6 relative z-10 text-center mt-8">
+            <span
+                class="inline-block px-4 py-1.5 bg-blue-600/20 backdrop-blur-md border border-blue-500/30 text-blue-400 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 animate-fade-in">Experience
+                the Unseen</span>
+            <h1 class="text-5xl md:text-8xl font-extrabold text-white mb-8 leading-[1.1]">Where the Road <br><span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-500">Truly Ends.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 font-light leading-relaxed">TerraQuest
+                Vanguard leads elite expeditions to the world's most remote, challenging, and awe-inspiring terrains. No
+                paths. No apologies.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
+                <a href="./destinations.html"
+                    class="btn-adventure px-10 py-4 rounded-full font-bold text-lg shadow-2xl flex items-center gap-3">
+                    View Expeditions <i class="fas fa-arrow-down"></i>
+                </a>
+                <a href="./contact.html"
+                    class="glass-card text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition">
+                    Custom Itinerary
+                </a>
+            </div>
+        </div>
+
+        <!-- Stats Overlay -->
+        <div class="absolute bottom-10 left-0 right-0 hidden lg:block">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-4 gap-8 mt-20">
+                <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                    <div class="text-3xl text-blue-500"><i class="fas fa-mountain-sun"></i></div>
+                    <div>
+                        <div class="text-xl font-bold text-white">40+</div>
+                        <div class="text-xs text-slate-300">Summits Reached</div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                    <div class="text-3xl text-blue-500"><i class="fas fa-snowflake"></i></div>
+                    <div>
+                        <div class="text-xl font-bold text-white">-50°C</div>
+                        <div class="text-xs text-slate-300">Arctic Prowess</div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                    <div class="text-3xl text-blue-500"><i class="fas fa-biohazard"></i></div>
+                    <div>
+                        <div class="text-xl font-bold text-white">0</div>
+                        <div class="text-xs text-slate-300">Compromises</div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                    <div class="text-3xl text-blue-500"><i class="fas fa-compass-drafting"></i></div>
+                    <div>
+                        <div class="text-xl font-bold text-white">100%</div>
+                        <div class="text-xs text-slate-300">Expert-Led</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 2: Adventure Pillars -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Choose Your Element</h2>
+                <div class="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Vertical -->
+                <div class="relative h-96 rounded-3xl overflow-hidden group hover-lift">
+                    <img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&q=80&w=600"
+                        class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                        alt="Summit">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-bold mb-1">Summit</h3>
+                        <p class="text-sm opacity-80">High-altitude mountaineering</p>
+                    </div>
+                </div>
+                <!-- Aquatic -->
+                <div class="relative h-96 rounded-3xl overflow-hidden group hover-lift">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600"
+                        class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                        alt="Abyss">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-bold mb-1">Abyss</h3>
+                        <p class="text-sm opacity-80">Deep-sea & cave diving</p>
+                    </div>
+                </div>
+                <!-- Forest -->
+                <div class="relative h-96 rounded-3xl overflow-hidden group hover-lift">
+                    <img src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&q=80&w=600"
+                        class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                        alt="Wild">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-bold mb-1">Equator</h3>
+                        <p class="text-sm opacity-80">Jungle & desert survival</p>
+                    </div>
+                </div>
+                <!-- Ice -->
+                <div class="relative h-96 rounded-3xl overflow-hidden group hover-lift">
+                    <img src="https://images.unsplash.com/photo-1473081556163-2a17de81fc97?auto=format&fit=crop&q=80&w=600"
+                        class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                        alt="Polar">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-bold mb-1">Polar</h3>
+                        <p class="text-sm opacity-80">Arctic & Antarctic crossing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Featured Expedition -->
+    <section id="featured" class="py-24 bg-slate-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div
+                        class="aspect-[4/5] rounded-[2rem] overflow-hidden border-8 border-slate-800 shadow-2xl skew-y-3">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1000"
+                            class="w-full h-full object-cover" alt="Expedition">
+                    </div>
+                    <div class="absolute -bottom-8 -right-8 bg-blue-600 p-8 rounded-3xl shadow-2xl -rotate-3">
+                        <div class="text-4xl font-extrabold mb-1">14 Days</div>
+                        <div class="text-sm font-bold uppercase tracking-widest text-blue-200">The Karakoram Trail</div>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div
+                        class="inline-block px-4 py-1.5 bg-blue-600 rounded-lg text-xs font-bold uppercase tracking-widest">
+                        Limited Entry</div>
+                    <h2 class="text-4xl md:text-6xl font-extrabold leading-tight">Concur the <br> <span
+                            class="text-blue-500 italic">Untouched Peaks.</span></h2>
+                    <p class="text-slate-400 text-lg leading-relaxed">Our Karakoram traverse is not a vacation. It is a
+                        grueling, magnificent challenge through the second highest mountain range in the world. Fully
+                        supported, yet raw.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 text-slate-300">
+                            <span
+                                class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-blue-500"><i
+                                    class="fas fa-check"></i></span>
+                            Grade V Difficulty - Peak Physical Condition Required
+                        </li>
+                        <li class="flex items-center gap-4 text-slate-300">
+                            <span
+                                class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-blue-500"><i
+                                    class="fas fa-check"></i></span>
+                            Sherpa-led Navigation & Logistics
+                        </li>
+                        <li class="flex items-center gap-4 text-slate-300">
+                            <span
+                                class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-blue-500"><i
+                                    class="fas fa-check"></i></span>
+                            Full Satellite Communications Coverage
+                        </li>
+                    </ul>
+                    <div class="pt-6">
+                        <a href="./booking.html"><button
+                                class="bg-white text-slate-900 px-10 py-4 rounded-xl font-extrabold text-lg hover:bg-blue-600 hover:text-white transition-all shadow-xl">Apply
+                                for Slot</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Prep & Gear -->
+    <section class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8 text-center lg:text-left">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Vanguard Protocol
+                    </h2>
+                    <p class="text-slate-500 max-w-xl">Every expedition is a machine of many parts. We provide the
+                        expertise; you provide the will.</p>
+                </div>
+                <a href="./about.html"
+                    class="px-8 py-3 border-2 border-slate-900 font-bold rounded-full hover:bg-slate-900 hover:text-white transition">Read
+                    Manifesto</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="space-y-6">
+                    <div
+                        class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-2xl text-blue-600">
+                        <i class="fas fa-hiking"></i></div>
+                    <h3 class="text-2xl font-bold">Physical Readiness</h3>
+                    <p class="text-slate-600 leading-relaxed">Receive a custom 12-week training regimen tailored for
+                        your specific expedition biome and altitude.</p>
+                </div>
+                <div class="space-y-6">
+                    <div
+                        class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-2xl text-blue-600">
+                        <i class="fas fa-toolbox"></i></div>
+                    <h3 class="text-2xl font-bold">Grade-A Gear</h3>
+                    <p class="text-slate-600 leading-relaxed">We supply high-altitude tents, sub-zero sleeping systems,
+                        and satellite distress beacons for every member.</p>
+                </div>
+                <div class="space-y-6">
+                    <div
+                        class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-2xl text-blue-600">
+                        <i class="fas fa-user-md"></i></div>
+                    <h3 class="text-2xl font-bold">Medical Security</h3>
+                    <p class="text-slate-600 leading-relaxed">Wilderness first responders accompany every trip, equipped
+                        with comprehensive field trauma kits.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: The Vanguard Feed (Review/Gallery) -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-extrabold mb-12 text-center">Field Reports</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 relative">
+                    <div
+                        class="absolute -top-4 -right-4 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fas fa-quote-right"></i></div>
+                    <p class="text-slate-600 italic mb-8 leading-relaxed">"TerraQuest isn't a travel agent. They are
+                        life-changers. Reaching the summit of Mount Elbrus was the hardest and best thing I've ever
+                        done."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+                            <img src="https://i.pravatar.cc/100?u=a" alt="User">
+                        </div>
+                        <div>
+                            <div class="font-bold">David Thorne</div>
+                            <div class="text-xs text-blue-600 uppercase font-bold tracking-widest">Elbrus Expedition
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 relative">
+                    <div
+                        class="absolute -top-4 -right-4 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fas fa-quote-right"></i></div>
+                    <p class="text-slate-600 italic mb-8 leading-relaxed">"The logistics were iron-clad. In the middle
+                        of the Gobi desert, we felt completely safe but also completely wild. Unmatched experience."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+                            <img src="https://i.pravatar.cc/100?u=b" alt="User">
+                        </div>
+                        <div>
+                            <div class="font-bold">Elena Ross</div>
+                            <div class="text-xs text-blue-600 uppercase font-bold tracking-widest">Desert Vanguard</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 relative">
+                    <div
+                        class="absolute -top-4 -right-4 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fas fa-quote-right"></i></div>
+                    <p class="text-slate-600 italic mb-8 leading-relaxed">"A raw encounter with nature. No filters, no
+                        luxury buffers, just the pulse of the planet. Cannot wait for my next crossing."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+                            <img src="https://i.pravatar.cc/100?u=c" alt="User">
+                        </div>
+                        <div>
+                            <div class="font-bold">Marcus Chen</div>
+                            <div class="text-xs text-blue-600 uppercase font-bold tracking-widest">Arctic Solo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ <footer class="bg-gray-900 text-white pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <a href="./index.html" class="text-2xl font-bold text-white mb-6 flex items-center gap-2"><i class="fas fa-compass"></i> TerraQuest</a>
+                <p class="text-gray-400 leading-relaxed">Making the world accessible to everyone through curated travel
+                    experiences and unparalleled support.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Destinations</a></li>
+                    <li><a href="#" class="hover:text-white transition">Special Offers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Travel Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Contact</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><i class="fas fa-phone mr-2"></i> +1 (555) 000-1234</li>
+                    <li><i class="fas fa-envelope mr-2"></i> hello@terraquest.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Adventure Way, NY</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-lg">Follow Us</h4>
+                <div class="flex gap-4 text-2xl">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            &copy; 2024 TerraQuest Travel Agency. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Navbar (removed scroll dependency for static fixed look)
+        document.getElementById("navbar").classList.add("nav-glass", "shadow-md", "text-gray-900");
+    </script>
+</body>
+
+</html>
+

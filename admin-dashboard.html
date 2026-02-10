@@ -47,290 +47,96 @@
 <body class="bg-gray-50 text-slate-800" x-data="{ currentTab: 'overview', sidebarOpen: false }">
 
     <!-- Standard Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 bg-white shadow-sm text-slate-900">
+      
+    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300 nav-glass shadow-md text-gray-900">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <button @click="sidebarOpen = !sidebarOpen"
-                    class="lg:hidden text-slate-600 hover:text-blue-600 transition">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-                <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
-                    <i class="fas fa-compass"></i> TerraQuest
-                    <span class="text-xs bg-slate-900 text-white px-2 py-0.5 rounded ml-1">ADMIN</span>
-                </div>
-            </div>
+            <a href="./index.html" class="text-2xl font-bold text-blue-600 flex items-center gap-2"><i class="fas fa-compass"></i> TerraQuest</a>
 
             <div class="hidden md:flex space-x-8 font-medium">
-                <a href="./index.html" class="hover:text-blue-600 transition">Home</a>
-                <a href="./about.html" class="hover:text-blue-600 transition">About</a>
-                <a href="./destinations.html" class="hover:text-blue-600 transition">Destinations</a>
-                <a href="./contact.html" class="hover:text-blue-600 transition">Contact</a>
+                <a href="#" class="nav-link hover:text-blue-600 transition">Home</a>
+                <a href="./home-2.html" class="nav-link hover:text-blue-600 transition">Tour</a>
+                <a href="./about.html" class="nav-link hover:text-blue-600 transition">About</a>
+                <a href="./destinations.html" class="nav-link hover:text-blue-600 transition">Destinations</a>
+                <a href="./contact.html" class="nav-link hover:text-blue-600 transition">Contact</a>
             </div>
 
-            <div class="flex items-center gap-4">
-                <div class="flex items-center gap-3">
-                    <div class="text-right hidden sm:block">
-                        <p class="text-sm font-bold text-slate-900 admin-name-display">Loading...</p>
-                        <p class="text-xs text-slate-500">Administrator</p>
-                    </div>
-                    <div
-                        class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg font-bold border-2 border-white shadow-sm admin-initial-display">
-                        -
+            <div class="flex items-center gap-2 md:gap-4">
+                <a href="./booking.html" class="hidden md:block"><button
+                        class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg whitespace-nowrap">
+                        Book Now
+                    </button></a>
+
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative">
+                    <button id="auth-trigger" onclick="Auth.toggleDropdown()"
+                        class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition focus:outline-none">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="auth-dropdown"
+                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50">
+                        <div id="dropdown-content" class="py-1">
+                            <!-- Content injected by JS -->
+                        </div>
                     </div>
                 </div>
+
+                <!-- Hamburger Menu Button -->
+                <button id="menu-toggle" onclick="Auth.toggleMenu()"
+                    class="md:hidden text-2xl focus:outline-none ml-2 text-current transition-colors">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-white z-[60] translate-x-full md:hidden flex flex-col p-8 text-slate-900">
+            <div class="flex justify-between items-center mb-12">
+                <a href="./index.html" class="text-2xl font-bold text-blue-600 flex items-center gap-2"><i class="fas fa-compass"></i> TerraQuest</a>
+                <button onclick="Auth.toggleMenu()" class="text-3xl focus:outline-none hover:text-red-500 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="flex flex-col gap-6 text-xl font-semibold">
+                <a href="#" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Home <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./home-2.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Tour <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./about.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    About <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./destinations.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Destinations <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+                <a href="./contact.html" onclick="Auth.toggleMenu()"
+                    class="hover:text-blue-600 transition py-2 border-b border-gray-50 flex items-center justify-between">
+                    Contact <i class="fas fa-chevron-right text-sm opacity-30"></i>
+                </a>
+
+                <a href="./booking.html" onclick="Auth.toggleMenu()" class="mt-4">
+                    <button
+                        class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg active:scale-[0.98] transition">
+                        Book Now
+                    </button>
+                </a>
             </div>
         </div>
     </nav>
-
-
-    <div class="max-w-7xl mx-auto pt-24 pb-12 px-6 min-h-screen flex gap-8">
-
-        <!-- Admin Sidebar -->
-        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
-            class="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-white transition-transform duration-300 lg:static lg:block shrink-0 rounded-2xl h-[calc(100vh-8rem)] mt-24 lg:mt-0 shadow-xl overflow-hidden">
-
-            <div class="p-6 border-b border-slate-700 bg-slate-800">
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Admin Panel</p>
-            </div>
-
-            <nav class="p-4 space-y-2 overflow-y-auto h-full">
-                <a href="#" @click.prevent="currentTab = 'overview'; sidebarOpen = false"
-                    :class="{ 'active': currentTab === 'overview' }"
-                    class="admin-link flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition">
-                    <i class="fas fa-chart-line w-5"></i> Dashboard
-                </a>
-                <a href="#" @click.prevent="currentTab = 'bookings'; sidebarOpen = false"
-                    :class="{ 'active': currentTab === 'bookings' }"
-                    class="admin-link flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition">
-                    <i class="fas fa-calendar-check w-5"></i> Bookings
-                </a>
-                <a href="#" @click.prevent="currentTab = 'users'; sidebarOpen = false"
-                    :class="{ 'active': currentTab === 'users' }"
-                    class="admin-link flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition">
-                    <i class="fas fa-users w-5"></i> Users
-                </a>
-
-                <div class="mt-8 pt-6 border-t border-slate-700">
-                    <a href="#" onclick="Auth.logout()"
-                        class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-900/20 rounded-lg transition">
-                        <i class="fas fa-sign-out-alt w-5"></i> Logout
-                    </a>
-                </div>
-            </nav>
-        </aside>
-
-        <!-- Overlay for mobile sidebar -->
-        <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black/50 z-30 lg:hidden"></div>
-
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col min-w-0">
-
-            <!-- Content Area -->
-            <main class="flex-1">
-
-                <!-- OVERVIEW TAB -->
-                <div x-show="currentTab === 'overview'" class="space-y-8" x-transition.opacity>
-
-                    <!-- Header -->
-                    <div class="flex justify-between items-center mb-6">
-                        <div>
-                            <h1 class="text-3xl font-bold text-slate-800">Dashboard Overview</h1>
-                            <p class="text-slate-500">Welcome back, Administrator.</p>
-                        </div>
-                        <span
-                            class="text-sm bg-white px-3 py-1 rounded-full border border-slate-200 text-slate-500 shadow-sm">
-                            <i class="fas fa-circle text-green-500 text-[10px] mr-2"></i> Live Data
-                        </span>
-                    </div>
-
-                    <!-- KPI Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="flex justify-between items-start mb-4">
-                                <div>
-                                    <p class="text-slate-500 text-sm font-medium">Total Revenue</p>
-                                    <h3 class="text-3xl font-bold text-slate-900 mt-1" id="revenue-display">$0.00</h3>
-                                </div>
-                                <div class="p-3 bg-green-50 text-green-600 rounded-xl">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </div>
-                            </div>
-                            <span class="text-slate-400 text-sm">Lifetime Confirmed</span>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="flex justify-between items-start mb-4">
-                                <div>
-                                    <p class="text-slate-500 text-sm font-medium">Total Bookings</p>
-                                    <h3 class="text-3xl font-bold text-slate-900 mt-1" id="total-bookings-display">0
-                                    </h3>
-                                </div>
-                                <div class="p-3 bg-blue-50 text-blue-600 rounded-xl">
-                                    <i class="fas fa-suitcase"></i>
-                                </div>
-                            </div>
-                            <span class="text-slate-400 text-sm">All time</span>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="flex justify-between items-start mb-4">
-                                <div>
-                                    <p class="text-slate-500 text-sm font-medium">Active Users</p>
-                                    <h3 class="text-3xl font-bold text-slate-900 mt-1" id="active-users-display">0</h3>
-                                </div>
-                                <div class="p-3 bg-purple-50 text-purple-600 rounded-xl">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                            </div>
-                            <span class="text-slate-400 text-sm">Registered Customers</span>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="flex justify-between items-start mb-4">
-                                <div>
-                                    <p class="text-slate-500 text-sm font-medium">Pending Inquiries</p>
-                                    <h3 class="text-3xl font-bold text-slate-900 mt-1" id="pending-inquiries-display">0
-                                    </h3>
-                                </div>
-                                <div class="p-3 bg-orange-50 text-orange-600 rounded-xl">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                            </div>
-                            <div id="inquiry-status-message">
-                                <!-- Populated by JS -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Recent Bookings Table Preview -->
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                        <div class="p-6 border-b border-slate-100 flex justify-between items-center">
-                            <h3 class="font-bold text-lg">Recent Bookings</h3>
-                            <button @click="currentTab = 'bookings'"
-                                class="text-blue-600 text-sm font-bold hover:underline">View All</button>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead class="bg-slate-50 text-slate-500 text-xs uppercase font-bold text-left">
-                                    <tr>
-                                        <th class="p-4 border-b border-slate-200">ID</th>
-                                        <th class="p-4 border-b border-slate-200">Customer</th>
-                                        <th class="p-4 border-b border-slate-200">Destination</th>
-                                        <th class="p-4 border-b border-slate-200">Date</th>
-                                        <th class="p-4 border-b border-slate-200">Amount</th>
-                                        <th class="p-4 border-b border-slate-200">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-slate-100 text-sm" id="recent-bookings-body">
-                                    <!-- Populated by JS -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BOOKINGS TAB (Detail View) -->
-                <div x-show="currentTab === 'bookings'" class="space-y-6" x-transition.opacity>
-                    <h2 class="text-2xl font-bold text-slate-800">All Bookings</h2>
-                    <p class="text-slate-500">Detailed management of all bookings.</p>
-
-                    <div class="bg-white rounded-2xl p-8 border border-slate-200 text-center">
-                        <i class="fas fa-info-circle text-4xl text-blue-200 mb-4"></i>
-                        <h3 class="text-lg font-bold text-slate-800">Booking Management</h3>
-                        <p class="text-slate-500 mb-6">Use the Recent Bookings table on the overview for now. Advanced
-                            filtering coming soon.</p>
-                        <button @click="currentTab = 'overview'" class="text-blue-600 font-bold hover:underline">Back to
-                            Overview</button>
-                    </div>
-                </div>
-
-                <!-- USERS TAB (Placeholder for now) -->
-                <div x-show="currentTab === 'users'" class="space-y-6" x-transition.opacity>
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-2xl font-bold text-slate-800">User Management</h2>
-                            <p class="text-slate-500">Manage registered users and administrators.</p>
-                        </div>
-                        <button onclick="alert('Feature coming soon: Add User')"
-                            class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold text-sm hover:bg-blue-700 transition">
-                            <i class="fas fa-plus mr-2"></i> Add User
-                        </button>
-                    </div>
-
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead class="bg-slate-50 text-slate-500 text-xs uppercase font-bold text-left">
-                                    <tr>
-                                        <th class="p-4 border-b border-slate-200">User</th>
-                                        <th class="p-4 border-b border-slate-200">Role</th>
-                                        <th class="p-4 border-b border-slate-200">Joined</th>
-                                        <th class="p-4 border-b border-slate-200 text-right">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-slate-100 text-sm" id="users-table-body">
-                                    <!-- Populated by JS -->
-                                    <tr>
-                                        <td colspan="4" class="p-8 text-center text-slate-500">
-                                            <i class="fas fa-circle-notch fa-spin text-blue-500 mb-2 text-2xl"></i><br>
-                                            Loading users...
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </main>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-20 pb-10 px-6 mt-12">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            <div class="col-span-1 md:col-span-1">
-                <div class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                    <i class="fas fa-compass"></i> TerraQuest
-                </div>
-                <p class="text-gray-400 leading-relaxed">Making the world accessible to everyone through curated travel
-                    experiences and unparalleled support.</p>
-            </div>
-            <div>
-                <h4 class="font-bold mb-6 text-lg">Quick Links</h4>
-                <ul class="space-y-4 text-gray-400">
-                    <li><a href="#" class="hover:text-white transition">Destinations</a></li>
-                    <li><a href="#" class="hover:text-white transition">Special Offers</a></li>
-                    <li><a href="#" class="hover:text-white transition">Travel Blog</a></li>
-                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-6 text-lg">Contact</h4>
-                <ul class="space-y-4 text-gray-400">
-                    <li><i class="fas fa-phone mr-2"></i> +1 (555) 000-1234</li>
-                    <li><i class="fas fa-envelope mr-2"></i> hello@terraquest.com</li>
-                    <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Adventure Way, NY</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-6 text-lg">Follow Us</h4>
-                <div class="flex gap-4 text-2xl">
-                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-            &copy; 2024 TerraQuest Travel Agency. All rights reserved.
-        </div>
-    </footer>
-
-    <!-- Scripts -->
     <script src="js/mock-api.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/admin-dashboard.js"></script>
 </body>
 
 </html>
+
+
+
