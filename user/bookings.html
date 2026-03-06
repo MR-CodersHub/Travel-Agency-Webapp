@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings | TerraQuest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+
+    <nav class="sticky top-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="../index.html" class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-compass"></i> TerraQuest
+            </a>
+            <div class="hidden md:flex items-center gap-8 font-medium">
+                <a href="dashboard.html" class="hover:text-blue-600 transition">Dashboard</a>
+                <a href="bookings.html" class="text-blue-600">My Bookings</a>
+                <a href="profile.html" class="hover:text-blue-600 transition">Profile</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative">
+                    <button id="auth-trigger" onclick="Auth.toggleDropdown()"
+                        class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition focus:outline-none user-initial-display">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="auth-dropdown"
+                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50">
+                        <div id="dropdown-content" class="py-1">
+                            <!-- Content injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 py-10 fade-in">
+        <div class="flex justify-between items-center mb-10">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900">My Bookings</h1>
+                <p class="text-slate-500 mt-1">Manage your upcoming and past travel experiences.</p>
+            </div>
+            <a href="../destinations.html"
+                class="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+                Book New Trip
+            </a>
+        </div>
+
+        <div class="space-y-6" id="bookings-container">
+            <!-- Bookings injected by JS -->
+            <div class="animate-pulse space-y-6">
+                <div class="h-32 bg-white rounded-2xl border border-slate-100"></div>
+                <div class="h-32 bg-white rounded-2xl border border-slate-100"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/mock-api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/user-dashboard.js"></script>
+</body>
+
+</html>
