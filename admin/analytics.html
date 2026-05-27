@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics | TerraQuest Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #2563eb;
+            --bg-body: #f8fafc;
+            --sidebar-width: 280px;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+        }
+
+        .sidebar-link.active {
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--primary);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive adjustments */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px !important;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            #main-content {
+                margin-left: 0 !important;
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(15, 23, 42, 0.5);
+                backdrop-filter: blur(4px);
+                z-index: 45;
+            }
+
+            .show+.sidebar-overlay {
+                display: block;
+            }
+
+            header {
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+            }
+
+            .sidebar-text {
+                opacity: 1 !important;
+                width: auto !important;
+                pointer-events: auto !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 260px !important;
+            }
+
+            h1 {
+                font-size: 1.125rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar fixed h-screen glass-panel z-50 flex flex-col border-r">
+        <div class="p-6 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-3 hover:opacity-80 transition">
+                <div
+                    class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
+                    <i class="fas fa-compass text-xl"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900 sidebar-text">TerraQuest</span>
+            </a>
+            <button id="close-sidebar" class="lg:hidden text-gray-500 hover:text-gray-900">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <a href="dashboard.html"
+                class="sidebar-link flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 font-medium text-gray-500">
+                <i class="fas fa-th-large w-5 text-center"></i>
+                <span class="sidebar-text">Dashboard</span>
+            </a>
+            <a href="users.html"
+                class="sidebar-link flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 font-medium text-gray-500">
+                <i class="fas fa-users w-5 text-center"></i>
+                <span class="sidebar-text">Manage Users</span>
+            </a>
+            <a href="bookings.html"
+                class="sidebar-link flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 font-medium text-gray-500">
+                <i class="fas fa-calendar-alt w-5 text-center"></i>
+                <span class="sidebar-text">Manage Bookings</span>
+            </a>
+            <a href="destinations.html"
+                class="sidebar-link flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 font-medium text-gray-500">
+                <i class="fas fa-map-marked-alt w-5 text-center"></i>
+                <span class="sidebar-text">Destinations</span>
+            </a>
+            <a href="analytics.html"
+                class="sidebar-link active flex items-center gap-4 px-4 py-3 rounded-xl font-medium">
+                <i class="fas fa-chart-line w-5 text-center"></i>
+                <span class="sidebar-text">Analytics</span>
+            </a>
+            <a href="payments.html"
+                class="sidebar-link flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 font-medium text-gray-500">
+                <i class="fas fa-credit-card w-5 text-center"></i>
+                <span class="sidebar-text">Payments</span>
+            </a>
+            <a href="reviews.html"
+                class="sidebar-link flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 font-medium text-gray-500">
+                <i class="fas fa-star w-5 text-center"></i>
+                <span class="sidebar-text">Reviews</span>
+            </a>
+            <div class="pt-6 mt-6 border-t border-gray-100">
+                <a href="settings.html"
+                    class="sidebar-link flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-gray-100 font-medium text-gray-500">
+                    <i class="fas fa-cog w-5 text-center"></i>
+                    <span class="sidebar-text">Settings</span>
+                </a>
+                <button onclick="Auth.logout()"
+                    class="w-full sidebar-link flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-red-50 font-medium text-red-500">
+                    <i class="fas fa-sign-out-alt w-5 text-center"></i>
+                    <span class="sidebar-text">Logout</span>
+                </button>
+            </div>
+        </nav>
+    </aside>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <main id="main-content"
+        class="flex-1 ml-[var(--sidebar-width)] overflow-y-auto h-screen transition-all duration-400">
+        <header
+            class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-toggle"
+                    class="lg:hidden w-10 h-10 flex items-center justify-center bg-gray-50 rounded-xl text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="text-xl font-bold text-gray-900">Analytics Insights</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative">
+                    <button id="auth-trigger" onclick="Auth.toggleDropdown()"
+                        class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition focus:outline-none admin-initial-display">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="auth-dropdown"
+                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50">
+                        <div id="dropdown-content" class="py-1">
+                            <!-- Content injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-8 max-w-7xl mx-auto space-y-8 fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <h4 class="font-bold mb-6">Regional Performance</h4>
+                    <div class="h-80"><canvas id="regionalChart"></canvas></div>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <h4 class="font-bold mb-6">User Acquisition</h4>
+                    <div class="h-80"><canvas id="acquisitionChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                <h4 class="font-bold mb-6">Monthly Growth</h4>
+                <div class="h-96"><canvas id="growthChart"></canvas></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/mock-api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin-dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx1 = document.getElementById('regionalChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Europe', 'Asia', 'Americas', 'Africa', 'Oceania'],
+                    datasets: [{
+                        data: [40, 25, 20, 10, 5],
+                        backgroundColor: ['#2563eb', '#60a5fa', '#06b6d4', '#0f172a', '#cbd5e1'],
+                        borderWidth: 0
+                    }]
+                }
+            });
+
+            const ctx2 = document.getElementById('acquisitionChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'New Users',
+                        data: [120, 150, 180, 220, 260, 310],
+                        backgroundColor: '#2563eb',
+                        borderRadius: 8
+                    }]
+                }
+            });
+
+            const ctx3 = document.getElementById('growthChart').getContext('2d');
+            new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Growth Rate (%)',
+                        data: [5, 12, 8, 15, 22, 18],
+                        borderColor: '#06b6d4',
+                        tension: 0.4,
+                        fill: false
+                    }]
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

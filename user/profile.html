@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | TerraQuest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+
+    <nav class="sticky top-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="../index.html" class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-compass"></i> TerraQuest
+            </a>
+            <div class="hidden md:flex items-center gap-8 font-medium">
+                <a href="dashboard.html" class="hover:text-blue-600 transition">Dashboard</a>
+                <a href="bookings.html" class="hover:text-blue-600 transition">My Bookings</a>
+                <a href="profile.html" class="text-blue-600">Profile</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <!-- Profile Dropdown Trigger -->
+                <div class="relative">
+                    <button id="auth-trigger" onclick="Auth.toggleDropdown()"
+                        class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition focus:outline-none user-initial-display">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="auth-dropdown"
+                        class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-gray-100 hidden overflow-hidden z-50">
+                        <div id="dropdown-content" class="py-1">
+                            <!-- Content injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 py-10 fade-in">
+        <h1 class="text-3xl font-bold text-slate-900 mb-10">Account Settings</h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <!-- Sidebar -->
+            <div class="space-y-2">
+                <button
+                    class="w-full flex items-center gap-3 px-6 py-4 rounded-2xl bg-white border border-slate-100 font-bold text-blue-600 shadow-sm transition">
+                    <i class="far fa-user"></i> Personal Info
+                </button>
+                <button
+                    class="w-full flex items-center gap-3 px-6 py-4 rounded-2xl text-slate-500 hover:bg-white hover:shadow-sm transition font-medium">
+                    <i class="fas fa-shield-alt"></i> Security
+                </button>
+                <button
+                    class="w-full flex items-center gap-3 px-6 py-4 rounded-2xl text-slate-500 hover:bg-white hover:shadow-sm transition font-medium">
+                    <i class="far fa-bell"></i> Notifications
+                </button>
+                <button
+                    class="w-full flex items-center gap-3 px-6 py-4 rounded-2xl text-slate-500 hover:bg-white hover:shadow-sm transition font-medium">
+                    <i class="far fa-credit-card"></i> Payment Methods
+                </button>
+            </div>
+
+            <!-- Profile Form -->
+            <div class="lg:col-span-2 space-y-8">
+                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="relative">
+                            <div
+                                class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-3xl font-bold text-slate-400 user-initial-display">
+                                U</div>
+                            <button
+                                class="absolute bottom-0 right-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center border-4 border-white"><i
+                                    class="fas fa-camera text-xs"></i></button>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 user-name-display">Traveler Name</h3>
+                            <p class="text-slate-500 text-sm">Member since <span class="member-since-display">Jan
+                                    2024</span></p>
+                        </div>
+                    </div>
+
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-slate-700 ml-1">Full Name</label>
+                                <input type="text"
+                                    class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-100 focus:border-blue-600 transition outline-none user-name-display-input"
+                                    value="Traveler" disabled>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-slate-700 ml-1">Email Address</label>
+                                <input type="email"
+                                    class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-100 focus:border-blue-600 transition outline-none user-email-display-input"
+                                    value="traveler@example.com" disabled>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700 ml-1">Phone Number</label>
+                            <input type="text" placeholder="+1 (555) 000-0000"
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-100 focus:border-blue-600 transition outline-none">
+                        </div>
+                        <div class="pt-4 border-t border-slate-50 flex justify-end gap-3">
+                            <button type="button"
+                                class="px-6 py-3 rounded-xl font-bold text-slate-500 hover:bg-slate-50 transition">Cancel</button>
+                            <button type="button"
+                                class="px-6 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200">Save
+                                Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="bg-red-50 p-8 rounded-[2.5rem] border border-red-100">
+                    <h3 class="text-red-700 font-bold mb-2">Danger Zone</h3>
+                    <p class="text-red-600/70 text-sm mb-6">Once you delete your account, there is no going back. Please
+                        be certain.</p>
+                    <button
+                        class="bg-white text-red-600 px-6 py-3 rounded-xl font-bold border border-red-200 hover:bg-red-600 hover:text-white transition">Delete
+                        Account</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/mock-api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/user-dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const authData = await Auth.checkAuth();
+            if (authData.status === 'authenticated') {
+                const user = authData.user;
+                document.querySelectorAll('.user-name-display-input').forEach(el => el.value = user.name);
+                document.querySelectorAll('.user-email-display-input').forEach(el => el.value = user.email);
+            }
+        });
+    </script>
+</body>
+
+</html>

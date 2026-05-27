@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | TerraQuest Travel</title>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .auth-bg {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                url('https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Mobile Optimization (360px - 400px) */
+        @media (max-width: 400px) {
+
+            html,
+            body {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                position: relative;
+            }
+
+            body {
+                padding: 5.5rem 1rem 1.5rem 1rem !important;
+                /* Reduced clearance and bottom padding */
+                justify-content: flex-start !important;
+                min-height: auto !important;
+                height: auto !important;
+                display: block !important;
+            }
+
+            .max-w-md {
+                margin: 0 auto !important;
+                width: 100% !important;
+            }
+
+            /* Responsive Auth Card */
+            .bg-white.rounded-3xl {
+                padding: 1.25rem 1rem !important;
+                border-radius: 1.25rem !important;
+                border: 1px solid #f1f5f9 !important;
+                width: 100% !important;
+                box-sizing: border-box;
+                margin-top: 0 !important;
+            }
+
+            /* Spacing between sections */
+            .text-center.mb-8 {
+                margin-bottom: 1.25rem !important;
+            }
+
+            .grid-cols-2 {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .grid-cols-2 button {
+                width: 100% !important;
+                padding: 0.875rem !important;
+            }
+
+            .relative.flex.mb-8 {
+                margin-bottom: 1rem !important;
+            }
+
+            /* Heading Styles */
+            .text-3xl {
+                font-size: 1.5rem !important;
+                line-height: 2rem !important;
+                margin-bottom: 0.25rem !important;
+            }
+
+            /* Form Elements */
+            form.space-y-5 {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1rem !important;
+                /* Consistent 16px gap */
+                margin-top: 0 !important;
+            }
+
+            form.space-y-5>* {
+                margin-top: 0 !important;
+            }
+
+            label {
+                margin-bottom: 0.5rem !important;
+                font-size: 0.875rem !important;
+                display: block !important;
+            }
+
+            input {
+                width: 100% !important;
+                padding: 0.875rem 1rem !important;
+                font-size: 1rem !important;
+                height: auto !important;
+                /* Remove any fixed heights */
+            }
+
+            /* Brand Stability */
+            nav a.text-2xl {
+                white-space: nowrap !important;
+                font-size: 1.25rem !important;
+                gap: 0.35rem !important;
+                flex-shrink: 1 !important;
+            }
+
+            nav .max-w-7xl {
+                padding-left: 0.25rem !important;
+                padding-right: 0.25rem !important;
+                gap: 0.5rem !important;
+            }
+
+            /* Right side 'Back to Home' stability */
+            nav a.group {
+                white-space: nowrap !important;
+                font-size: 0.875rem !important;
+                flex-shrink: 0 !important;
+            }
+
+            .pl-11 {
+                padding-left: 2.75rem !important;
+            }
+
+            /* Forgot Password Link */
+            .flex.justify-start.mt-2 {
+                margin-top: 0.5rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            /* Submit Button */
+            button[type="submit"] {
+                margin-top: 0.5rem !important;
+                padding: 1rem !important;
+                width: 100% !important;
+                font-size: 1rem !important;
+                border-radius: 0.75rem !important;
+            }
+
+            /* Error Message Styling */
+            #errorContainer {
+                margin-top: 0.5rem !important;
+                padding: 0.875rem !important;
+            }
+
+            /* Signup Link */
+            #signupLink {
+                margin-top: 1.5rem !important;
+                margin-bottom: 1.5rem !important;
+                padding: 0 1rem !important;
+            }
+
+            /* Fix Checkbox Alignment for all mobile screens */
+            .checkbox-group {
+                display: flex !important;
+                align-items: center !important;
+                gap: 0.75rem !important;
+                padding: 0.25rem 0 !important;
+                width: 100% !important;
+            }
+
+            .checkbox-group input[type="checkbox"] {
+                flex-shrink: 0 !important;
+                width: 1.125rem !important;
+                height: 1.125rem !important;
+                margin: 0 !important;
+            }
+
+            .checkbox-group label {
+                margin: 0 !important;
+                line-height: 1.4 !important;
+                font-size: 0.875rem !important;
+                display: inline-block !important;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+
+<body class="auth-bg min-h-screen flex flex-col items-center justify-center p-6 pt-20">
+
+    <!-- Unique Header for Auth Pages -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-compass"></i> TerraQuest
+            </a>
+            <a href="index.html"
+                class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition font-semibold group">
+                <i class="fas fa-arrow-left text-sm group-hover:-translate-x-1 transition"></i>
+                Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <div class="max-w-md w-full">
+        <div class="text-center mb-6">
+            <div class="flex justify-center mb-4">
+                <div
+                    class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 text-2xl shadow-sm border border-blue-100">
+                    <i class="fas fa-compass"></i>
+                </div>
+            </div>
+            <h1 class="text-2xl font-bold text-slate-900">Welcome Back</h1>
+            <p class="text-slate-500 mt-1 text-sm">Log in to manage your bookings and travel plans.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 p-6 md:p-8">
+
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <button
+                    class="flex items-center justify-center gap-2 py-3 px-4 border border-slate-200 rounded-xl hover:bg-slate-50 transition font-medium text-sm text-slate-600">
+                    <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-4 h-4" alt="Google"> Google
+                </button>
+                <button
+                    class="flex items-center justify-center gap-2 py-3 px-4 border border-slate-200 rounded-xl hover:bg-slate-50 transition font-medium text-sm text-slate-600">
+                    <i class="fab fa-facebook text-blue-600 text-lg"></i> Facebook
+                </button>
+            </div>
+
+            <div class="relative flex items-center justify-center mb-6">
+                <div class="border-t border-slate-100 w-full"></div>
+                <span class="bg-white px-4 text-xs text-slate-400 uppercase tracking-widest absolute">Or continue with
+                    email</span>
+            </div>
+
+            <form action="#" class="space-y-4" id="loginForm">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                    <div class="relative">
+                        <i class="far fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="email" placeholder="name@example.com" required
+                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 focus:bg-white transition bg-slate-50/50">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+                    <div class="relative">
+                        <i class="fa fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="password" id="passwordField" placeholder="••••••••" required
+                            class="w-full pl-11 pr-12 py-3 rounded-xl border border-slate-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 focus:bg-white transition bg-slate-50/50">
+                        <button type="button" onclick="togglePassword()"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                            <i class="far fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                    <div class="flex justify-start mt-2">
+                        <a href="#" class="text-xs font-bold text-blue-600 hover:underline">Forgot Password?</a>
+                    </div>
+                </div>
+
+                <div class="checkbox-group flex items-center gap-3">
+                    <input type="checkbox" id="remember"
+                        class="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500 cursor-pointer">
+                    <label for="remember" class="text-sm text-slate-600 cursor-pointer select-none">Remember me for 30
+                        days</label>
+                </div>
+
+                <div id="errorContainer"
+                    class="hidden animate-pulse bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-2">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="errorMessage"></span>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-200 flex items-center justify-center gap-2">
+                    <span>Log In</span>
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </button>
+            </form>
+        </div>
+
+        <div class="mt-8 text-center" id="signupLink">
+            <p class="text-slate-600">
+                Don’t have an account?
+                <a href="./signup.html" class="text-blue-600 font-bold hover:underline">Create an Account</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function togglePassword() {
+            const field = document.getElementById('passwordField');
+            const icon = document.getElementById('toggleIcon');
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        const loginForm = document.getElementById('loginForm');
+        const errorContainer = document.getElementById('errorContainer');
+        const errorMessage = document.getElementById('errorMessage');
+
+        loginForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+
+            // Reset state
+            errorContainer.classList.add('hidden');
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Authenticating...';
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+
+            const email = this.querySelector('input[type="email"]').value;
+            const password = document.getElementById('passwordField').value;
+
+            const result = await Auth.login(email, password);
+
+            if (!result.success) {
+                errorMessage.innerText = result.message;
+                errorContainer.classList.remove('hidden');
+                btn.innerHTML = originalText;
+                btn.classList.remove('opacity-80', 'cursor-not-allowed');
+            }
+        });
+
+        // check for registration success param
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('registered')) {
+            errorMessage.innerText = 'Account created! Please log in.';
+            errorContainer.classList.remove('hidden');
+            errorContainer.classList.replace('bg-red-50', 'bg-green-50');
+            errorContainer.classList.replace('border-red-200', 'border-green-200');
+            errorContainer.classList.replace('text-red-600', 'text-green-600');
+        }
+    </script>
+</body>
+
+</html>

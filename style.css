@@ -1,0 +1,234 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Issue 1: Navbar Visibility & Contrast */
+.nav-glass {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+/* Ensure links are visible on dark backgrounds (when page is at top) */
+#navbar.text-white .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#navbar.text-white .nav-link:hover {
+    color: white;
+}
+
+/* Ensure links are visible on light backgrounds (when scrolled) */
+#navbar.text-gray-900 .nav-link {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+#navbar.text-gray-900 .nav-link:hover {
+    color: #2563eb;
+}
+
+/* Transition for links */
+.nav-link {
+    transition: all 0.2s ease-in-out;
+}
+
+/* ============================================
+   ACTIVE / CURRENT PAGE NAV LINK STYLES
+   Desktop navbar — clearly visible with color + bottom border
+   Kept separate from hover styles
+   ============================================ */
+
+/* Desktop: active link */
+.nav-link.active,
+.nav-link[aria-current="page"] {
+    color: #2563eb !important;
+    font-weight: 700 !important;
+    border-bottom: 2.5px solid #2563eb;
+    padding-bottom: 2px;
+}
+
+/* Desktop: active link should NOT change further on hover (distinguish from hover) */
+.nav-link.active:hover,
+.nav-link[aria-current="page"]:hover {
+    color: #1d4ed8 !important;
+    border-bottom-color: #1d4ed8;
+}
+
+/* Mobile menu: active link */
+#mobile-menu a.active,
+#mobile-menu a[aria-current="page"] {
+    color: #2563eb !important;
+    font-weight: 700 !important;
+    background-color: #eff6ff;
+    border-radius: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-left: 3px solid #2563eb;
+    border-bottom-color: transparent;
+    /* override the gray border-b on mobile items */
+}
+
+/* Mobile: active link hover */
+#mobile-menu a.active:hover,
+#mobile-menu a[aria-current="page"]:hover {
+    color: #1d4ed8 !important;
+    background-color: #dbeafe;
+}
+
+/* Mobile Menu Dropdown Style */
+#mobile-menu {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 85vh !important;
+    background-color: white !important;
+    z-index: 40 !important;
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    flex-direction: column !important;
+    padding: 1.5rem !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+    pointer-events: none !important;
+}
+
+#mobile-menu.open {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* Hide redundant branding/close button in dropdown mode */
+#mobile-menu>div:first-child {
+    display: none !important;
+}
+
+/* Base style for mobile menu content */
+#mobile-menu .flex-col {
+    gap: 0 !important;
+    display: flex !important;
+}
+
+#mobile-menu a {
+    padding: 1rem 0 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    color: #1e293b !important;
+    transition: all 0.2s ease !important;
+}
+
+#mobile-menu a:hover {
+    background-color: #f8fafc !important;
+    padding-left: 0.75rem !important;
+    color: #2563eb !important;
+}
+
+#mobile-menu a:last-child {
+    border-bottom: none !important;
+}
+
+/* Handle "Book Now" button in menu */
+#mobile-menu a:has(button),
+#mobile-menu a.mt-4 {
+    border-bottom: none !important;
+    padding: 0.5rem 0 !important;
+}
+
+#mobile-menu a:has(button):hover,
+#mobile-menu a.mt-4:hover {
+    background-color: transparent !important;
+    padding-left: 0 !important;
+}
+
+/* Dark theme support for mobile menu (if navbar is dark) */
+#navbar.bg-gray-900 #mobile-menu {
+    background-color: #111827 !important;
+    border-top-color: #1f2937 !important;
+}
+
+#navbar.bg-gray-900 #mobile-menu a {
+    color: #f3f4f6 !important;
+    border-bottom-color: #1f2937 !important;
+}
+
+#navbar.bg-gray-900 #mobile-menu a:hover {
+    background-color: #1f2937 !important;
+}
+
+/* Ensure mobile menu is visible on all small screens up to desktop breakpoint */
+@media (max-width: 1023px) {
+    #mobile-menu {
+        display: flex !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    #mobile-menu {
+        display: none !important;
+    }
+}
+
+/* ============================================
+   MOBILE BRANDING STABILITY (360px - 400px)
+   Prevents brand name wrapping and ensures icons stay on one line
+   ============================================ */
+@media (max-width: 400px) {
+
+    /* Target the brand link specifically */
+    nav a[href*="index.html"].font-bold,
+    .nav-glass a.font-bold,
+    nav .max-w-7xl>a.font-bold {
+        white-space: nowrap !important;
+        font-size: 1.25rem !important;
+        /* Reduced from 1.5rem (text-2xl) to 1.25rem (text-xl) */
+        gap: 0.375rem !important;
+        /* Tighter gap between icon and text */
+        display: flex !important;
+        align-items: center !important;
+        flex-shrink: 1 !important;
+    }
+
+    /* Container for the logo and icons */
+    nav .max-w-7xl,
+    #navbar .max-w-7xl {
+        gap: 0.5rem !important;
+        padding-left: 0.25rem !important;
+        padding-right: 0.25rem !important;
+    }
+
+    /* Right side icons container (User/Hamburger) */
+    nav .flex.items-center.gap-3,
+    nav .flex.items-center.gap-4,
+    nav div.flex.items-center.gap-2 {
+        gap: 0.625rem !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Reduce horizontal padding of the navy itself on very small screens */
+    nav.fixed,
+    #navbar.fixed {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+
+    /* Adjust hamburger button margin */
+    #menu-toggle {
+        margin-left: 0.25rem !important;
+    }
+}

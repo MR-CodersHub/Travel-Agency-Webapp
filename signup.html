@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | TerraQuest Travel</title>
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .strength-bar {
+            height: 4px;
+            transition: all 0.3s ease;
+            width: 0%;
+        }
+
+        .strength-weak {
+            width: 33%;
+            background-color: #ef4444;
+        }
+
+        .strength-medium {
+            width: 66%;
+            background-color: #f59e0b;
+        }
+
+        .strength-strong {
+            width: 100%;
+            background-color: #22c55e;
+        }
+
+        /* Mobile Optimization (360px - 400px) */
+        @media (max-width: 400px) {
+
+            html,
+            body {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                position: relative;
+            }
+
+            body {
+                display: block !important;
+                padding-top: 4rem !important;
+            }
+
+            .w-full.lg\/w-1\/2.flex {
+                padding: 1.25rem 1rem !important;
+                justify-content: flex-start !important;
+                min-height: auto !important;
+                width: 100% !important;
+            }
+
+            .h-20.lg\:hidden {
+                display: none !important;
+                /* Clean up extra space */
+            }
+
+            .mt-10.mb-10.text-center {
+                margin-top: 1rem !important;
+                margin-bottom: 1.25rem !important;
+            }
+
+            .text-3xl {
+                font-size: 1.5rem !important;
+                line-height: 2rem !important;
+                margin-bottom: 0.25rem !important;
+            }
+
+            .mb-6,
+            .mb-8 {
+                margin-bottom: 1rem !important;
+            }
+
+            /* Social Button Full Width */
+            button.w-full.flex {
+                padding: 0.875rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            /* Form Spacing */
+            form.space-y-5 {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1rem !important;
+                /* Consistent 16px gap */
+            }
+
+            form.space-y-5>* {
+                margin-top: 0 !important;
+            }
+
+            label {
+                margin-bottom: 0.5rem !important;
+                font-size: 0.875rem !important;
+                display: block !important;
+            }
+
+            input {
+                width: 100% !important;
+                padding: 0.875rem 1rem !important;
+                font-size: 1rem !important;
+                height: auto !important;
+            }
+
+            /* Brand Stability */
+            nav a.text-2xl {
+                white-space: nowrap !important;
+                font-size: 1.25rem !important;
+                gap: 0.35rem !important;
+                flex-shrink: 1 !important;
+            }
+
+            nav .max-w-7xl {
+                padding-left: 0.25rem !important;
+                padding-right: 0.25rem !important;
+                gap: 0.5rem !important;
+            }
+
+            /* Right side 'Back to Home' stability */
+            nav a.group {
+                white-space: nowrap !important;
+                font-size: 0.875rem !important;
+                flex-shrink: 0 !important;
+            }
+
+            /* Grid Split for small screens */
+            .grid.grid-cols-1.md\:grid-cols-2 {
+                gap: 1rem !important;
+            }
+
+            button[type="submit"] {
+                margin-top: 0.5rem !important;
+                padding: 1rem !important;
+                width: 100% !important;
+                font-size: 1.125rem !important;
+            }
+
+            /* Login Link */
+            .mt-8.text-center {
+                margin-top: 1.5rem !important;
+                margin-bottom: 2rem !important;
+                padding: 0 1rem !important;
+            }
+
+            /* Fix Layout and Checkbox Alignment for all mobile screens */
+            .checkbox-group {
+                display: flex !important;
+                align-items: flex-start !important;
+                gap: 0.75rem !important;
+                padding: 0.25rem 0 !important;
+                width: 100% !important;
+            }
+
+            .checkbox-group input[type="checkbox"] {
+                flex-shrink: 0 !important;
+                width: 1.125rem !important;
+                height: 1.125rem !important;
+                margin: 0 !important;
+                margin-top: 0.125rem !important;
+            }
+
+            .checkbox-group label {
+                margin: 0 !important;
+                line-height: 1.4 !important;
+                font-size: 0.875rem !important;
+                display: inline-block !important;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white min-h-screen flex flex-col lg:flex-row">
+
+    <!-- Unique Header for Auth Pages -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <i class="fas fa-compass"></i> TerraQuest
+            </a>
+            <a href="index.html"
+                class="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition font-semibold group">
+                <i class="fas fa-arrow-left text-sm group-hover:-translate-x-1 transition"></i>
+                Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <div class="hidden lg:flex lg:w-1/2 bg-blue-600 relative overflow-hidden items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=2000"
+                class="w-full h-full object-cover opacity-0" alt="Travel Landscape">
+        </div>
+        <div class="relative z-10 p-12 text-white max-w-lg">
+            <a href="./index.html"
+                class="text-3xl font-bold flex items-center gap-2 mb-8 text-white hover:opacity-90 transition"><i
+                    class="fas fa-compass"></i> TerraQuest</a>
+            <h2 class="text-5xl font-bold mb-6 text-white leading-tight">Your world tour starts here.</h2>
+            <p class="text-xl text-white font-medium leading-relaxed opacity-100">Join 50,000+ travelers who get
+                personalized itineraries,
+                member-only discounts, and 24/7 global support.</p>
+
+            <div class="mt-12 space-y-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"><i
+                            class="fas fa-check"></i></div>
+                    <span>Early access to seasonal deals</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"><i
+                            class="fas fa-check"></i></div>
+                    <span>One-click booking management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-12">
+        <div class="max-w-md w-full">
+            <!-- Header Spacing for mobile -->
+            <div class="h-14 lg:hidden"></div>
+
+            <!-- Logo & Heading -->
+            <div class="mt-6 mb-6 text-center">
+                <div class="flex justify-center mb-4">
+                    <div
+                        class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 text-2xl shadow-sm border border-blue-100">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                </div>
+                <h1 class="text-2xl font-bold text-slate-900 mb-1">Create Your Account</h1>
+                <p class="text-slate-500 font-medium text-sm">Start planning your next adventure with us.</p>
+            </div>
+
+            <button
+                class="w-full flex items-center justify-center gap-3 py-3 px-4 border border-slate-200 rounded-xl hover:bg-slate-50 transition font-semibold text-slate-700 mb-4">
+                <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-5 h-5" alt="Google">
+                Sign up with Google
+            </button>
+
+            <div class="relative flex items-center justify-center mb-6">
+                <div class="border-t border-slate-100 w-full"></div>
+                <span class="bg-white px-4 text-xs text-slate-400 uppercase tracking-widest absolute">Or
+                </span>
+            </div>
+
+            <form action="#" class="space-y-4" id="signupForm">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
+                    <input type="text" placeholder="Alex Johnson" required
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                        <input type="email" placeholder="alex@example.com" required
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Phone</label>
+                        <input type="tel" placeholder="+1..."
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+                    <div class="relative mb-2">
+                        <input type="password" id="pass" placeholder="Min. 8 characters" required
+                            class="w-full px-4 pr-12 py-3 rounded-xl border border-slate-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition">
+                        <button type="button" onclick="togglePassword()"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                            <i class="far fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                    <div class="bg-slate-100 rounded-full overflow-hidden">
+                        <div id="strengthBar" class="strength-bar"></div>
+                    </div>
+                    <p id="strengthText" class="text-[10px] uppercase font-bold tracking-wider mt-1 text-slate-400">
+                        Security: Enter password</p>
+                </div>
+
+                <div class="checkbox-group flex items-center gap-3">
+                    <input type="checkbox" id="terms" required
+                        class="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer">
+                    <label for="terms" class="text-sm text-slate-600 leading-snug">
+                        I agree to the <a href="#" class="text-blue-600 font-bold hover:underline">Terms &
+                            Conditions</a> and <a href="#" class="text-blue-600 font-bold hover:underline">Privacy
+                            Policy</a>.
+                    </label>
+                </div>
+
+                <div id="errorContainer"
+                    class="hidden animate-pulse bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-2">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="errorMessage"></span>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-100">
+                    Create Account
+                </button>
+            </form>
+
+            <p class="mt-8 text-center text-slate-600">
+                Already have an account?
+                <a href="login.html" class="text-blue-600 font-bold hover:underline">Log In</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="js/mock-api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function togglePassword() {
+            const field = document.getElementById('pass');
+            const icon = document.getElementById('toggleIcon');
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Password Strength Logic
+        const passInput = document.getElementById('pass');
+        const bar = document.getElementById('strengthBar');
+        const text = document.getElementById('strengthText');
+
+        passInput.addEventListener('input', () => {
+            const val = passInput.value;
+            bar.className = 'strength-bar';
+
+            if (val.length === 0) {
+                text.innerText = 'Security: Enter password';
+            } else if (val.length < 6) {
+                bar.classList.add('strength-weak');
+                text.innerText = 'Security: Weak';
+                text.style.color = '#ef4444';
+            } else if (val.length < 10) {
+                bar.classList.add('strength-medium');
+                text.innerText = 'Security: Good';
+                text.style.color = '#f59e0b';
+            } else {
+                bar.classList.add('strength-strong');
+                text.innerText = 'Security: Strong';
+                text.style.color = '#22c55e';
+            }
+        });
+
+        const signupForm = document.getElementById('signupForm');
+        const errorContainer = document.getElementById('errorContainer');
+        const errorMessage = document.getElementById('errorMessage');
+
+        signupForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+
+            // Reset state
+            errorContainer.classList.add('hidden');
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Creating Account...';
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const password = document.getElementById('pass').value;
+
+            const result = await Auth.signup(name, email, password);
+
+            if (!result.success) {
+                errorMessage.innerText = result.message;
+                errorContainer.classList.remove('hidden');
+                btn.innerHTML = originalText;
+                btn.classList.remove('opacity-80', 'cursor-not-allowed');
+            }
+        });
+    </script>
+</body>
+
+</html>
